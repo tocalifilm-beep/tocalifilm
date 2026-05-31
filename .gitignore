@@ -1,0 +1,9 @@
+.DS_Store
+THUMBNAILS/.DS_Store
+PREMIACIÓN/.DS_Store
+THUMBNAILS/Fotografías/
+*.docx
+**/*.docx
+THUMBNAILS/Screenshot*
+**/*Screenshot*
+.claude/
