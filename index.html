@@ -1,0 +1,3856 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>TOCALI FILM — Andrés Madrueño Ortiz</title>
+<meta name="description" content="Freelance videographer & director. Commercial, brand, music video & narrative film. Based in Baja California, formed in Tokyo.">
+<link rel="icon" type="image/png" href="TOCALI_JUST_COYOTE.png">
+<link rel="apple-touch-icon" href="TOCALI_JUST_COYOTE.png">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;1,300;1,400&family=Space+Mono:wght@400;700&display=swap" rel="stylesheet">
+<style>
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+  :root {
+    --gold: #1a1714;
+    --gold-dim: rgba(26,23,20,0.2);
+    --gold-faint: rgba(26,23,20,0.05);
+    --ink: #f7f5f1;
+    --ink-2: #efede9;
+    --ink-3: #e5e3de;
+    --cream: #111111;
+    --cream-60: rgba(17,17,17,0.55);
+    --cream-40: rgba(17,17,17,0.38);
+    --cream-20: rgba(17,17,17,0.18);
+    --cream-10: rgba(17,17,17,0.08);
+    --cream-05: rgba(17,17,17,0.04);
+    --border: 0.5px solid rgba(17,17,17,0.12);
+    --font-display: 'Bebas Neue', sans-serif;
+    --font-body: 'Cormorant Garamond', serif;
+    --font-mono: 'Space Mono', monospace;
+  }
+
+  html { scroll-behavior: smooth; overflow-x: hidden; }
+
+  body {
+    background: var(--ink);
+    color: var(--cream);
+    font-family: var(--font-body);
+    font-size: 16px;
+    line-height: 1.7;
+    overflow-x: hidden;
+    cursor: auto;
+  }
+
+  /* CUSTOM CURSOR */
+  .cursor { display: none !important; }
+  .cursor-x {
+    position: fixed;
+    width: 8px; height: 8px;
+    background: var(--gold);
+    border-radius: 50%;
+    pointer-events: none;
+    z-index: 9999;
+    transform: translate(-50%, -50%);
+    transition: transform 0.1s, width 0.3s, height 0.3s, opacity 0.3s;
+    mix-blend-mode: difference;
+  }
+  .cursor-ring { display: none !important; }
+  .cursor-ring-x {
+    position: fixed;
+    width: 36px; height: 36px;
+    border: 0.5px solid var(--gold);
+    border-radius: 50%;
+    pointer-events: none;
+    z-index: 9998;
+    transform: translate(-50%, -50%);
+    transition: transform 0.15s ease-out, width 0.3s, height 0.3s, opacity 0.3s, border-color 0.3s;
+    opacity: 0.5;
+  }
+  body:has(a:hover) .cursor-ring,
+  body:has(button:hover) .cursor-ring { width: 56px; height: 56px; opacity: 0.25; }
+
+  /* NAV */
+  nav {
+    position: fixed;
+    top: 0; left: 0; right: 0;
+    z-index: 500;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 1.5rem 3rem;
+    transition: background 0.5s, border-bottom 0.5s;
+  }
+  nav.scrolled {
+    background: rgba(255,255,255,0.96);
+    backdrop-filter: blur(12px);
+    border-bottom: 1px solid #e8e8e8;
+    box-shadow: 0 1px 20px rgba(0,0,0,0.06);
+  }
+  .nav-logo {
+    font-family: var(--font-display);
+    font-size: 1.5rem;
+    letter-spacing: 0.14em;
+    color: var(--cream);
+    text-decoration: none;
+  }
+  .nav-logo span { color: var(--gold); }
+  .nav-links {
+    display: flex;
+    gap: 2.5rem;
+    list-style: none;
+    align-items: center;
+  }
+  .nav-links a {
+    font-family: var(--font-mono);
+    font-size: 0.6rem;
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+    color: var(--cream-60);
+    text-decoration: none;
+    transition: color 0.3s;
+    position: relative;
+  }
+  .nav-links a::after {
+    content: '';
+    position: absolute;
+    bottom: -3px; left: 0;
+    width: 0; height: 0.5px;
+    background: var(--gold);
+    transition: width 0.3s;
+  }
+  .nav-links a:hover { color: var(--cream); }
+  .nav-links a:hover::after { width: 100%; }
+  .nav-contact {
+    border: 0.5px solid var(--gold-dim) !important;
+    padding: 0.5rem 1.2rem;
+    color: var(--gold) !important;
+  }
+  .nav-contact::after { display: none !important; }
+  .nav-contact:hover { background: var(--gold-faint); }
+
+  /* LANGUAGE TOGGLE */
+  .lang-toggle {
+    background: none;
+    border: 0.5px solid rgba(232,226,212,0.18);
+    color: var(--cream-60);
+    font-family: var(--font-mono);
+    font-size: 0.58rem;
+    letter-spacing: 0.18em;
+    padding: 0.4rem 0.8rem;
+    cursor: auto;
+    transition: border-color 0.3s, color 0.3s, background 0.3s;
+    flex-shrink: 0;
+  }
+  .lang-toggle:hover {
+    border-color: var(--gold-dim);
+    color: var(--gold);
+    background: var(--gold-faint);
+  }
+
+  .hamburger { display: none; background: none; border: none; cursor: auto; padding: 4px; }
+  .hamburger span {
+    display: block; width: 22px; height: 0.5px;
+    background: var(--cream); margin: 5px 0;
+    transition: all 0.3s;
+  }
+
+  /* HERO */
+  #hero {
+    position: relative;
+    height: 100svh;
+    min-height: 600px;
+    display: flex;
+    align-items: flex-end;
+    padding: 0 3rem 3.5rem;
+    overflow: hidden;
+  }
+
+  .hero-bg {
+    position: absolute; inset: 0;
+    background: #000;
+  }
+  .hero-bg video {
+    position: absolute;
+    inset: 0;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    opacity: 1;
+  }
+  /* Film grain overlay */
+  .hero-grain {
+    position: absolute; inset: 0;
+    background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='300' height='300'%3E%3Cfilter id='g'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.75' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='300' height='300' filter='url(%23g)' opacity='0.06'/%3E%3C/svg%3E");
+    opacity: 1;
+    pointer-events: none;
+    z-index: 1;
+  }
+  /* Ambient light top-right */
+  .hero-light {
+    position: absolute;
+    top: -20%; right: 0;
+    width: 60%; height: 80%;
+    background: radial-gradient(ellipse at center, rgba(17,17,17,0.04) 0%, transparent 65%);
+    pointer-events: none;
+  }
+  /* Vertical accent line */
+  .hero-vline {
+    position: absolute;
+    left: 3rem; top: 15%; bottom: 25%;
+    width: 0.5px;
+    background: linear-gradient(to bottom, transparent 0%, var(--gold) 30%, var(--gold) 70%, transparent 100%);
+    opacity: 0.2;
+  }
+  /* Horizontal rule near bottom */
+  .hero-hline {
+    position: absolute;
+    left: 3rem; right: 3rem;
+    bottom: 5.5rem;
+    height: 0.5px;
+    background: linear-gradient(to right, var(--gold-dim), transparent);
+    opacity: 0.3;
+  }
+
+  /* Filmstrip side accent */
+  .hero-filmstrip {
+    position: absolute;
+    right: 0; top: 0; bottom: 0;
+    width: 52px;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-evenly;
+    align-items: center;
+    border-left: var(--border);
+    z-index: 2;
+    gap: 0;
+  }
+  .film-hole {
+    width: 18px; height: 14px;
+    border: 0.5px solid rgba(232,226,212,0.1);
+    border-radius: 2px;
+    flex-shrink: 0;
+  }
+
+  .hero-content {
+    position: relative;
+    z-index: 3;
+    max-width: 820px;
+  }
+  .hero-eyebrow {
+    font-family: var(--font-mono);
+    font-size: 0.58rem;
+    letter-spacing: 0.3em;
+    text-transform: uppercase;
+    color: var(--gold);
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+    margin-bottom: 1.4rem;
+    opacity: 0;
+    animation: fadeUp 0.8s ease 0.1s forwards;
+  }
+  .hero-eyebrow::before {
+    content: '';
+    display: block;
+    width: 40px; height: 0.5px;
+    background: var(--gold);
+  }
+  .hero-h1 {
+    font-family: var(--font-display);
+    font-size: clamp(4.5rem, 11vw, 9rem);
+    line-height: 0.88;
+    letter-spacing: 0.015em;
+    color: var(--cream);
+    margin-bottom: 1.8rem;
+    opacity: 0;
+    animation: fadeUp 0.9s ease 0.25s forwards;
+  }
+  .hero-h1 .italic-line {
+    font-family: var(--font-body);
+    font-style: italic;
+    font-weight: 300;
+    color: var(--gold);
+    font-size: 0.8em;
+    letter-spacing: 0;
+    display: block;
+  }
+  .hero-sub {
+    font-size: 1.05rem;
+    font-weight: 300;
+    font-style: italic;
+    color: var(--cream-60);
+    line-height: 1.65;
+    max-width: 400px;
+    margin-bottom: 2.5rem;
+    opacity: 0;
+    animation: fadeUp 0.9s ease 0.4s forwards;
+  }
+  .hero-actions {
+    display: flex;
+    gap: 1.5rem;
+    align-items: center;
+    opacity: 0;
+    animation: fadeUp 0.9s ease 0.55s forwards;
+  }
+  .btn-primary {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.7rem;
+    background: var(--gold);
+    color: var(--ink);
+    padding: 0.85rem 2rem;
+    font-family: var(--font-mono);
+    font-size: 0.62rem;
+    letter-spacing: 0.18em;
+    text-transform: uppercase;
+    text-decoration: none;
+    font-weight: 700;
+    transition: background 0.3s, transform 0.2s;
+  }
+  .btn-primary:hover { background: #dbbe84; transform: translateY(-1px); }
+  .btn-ghost {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.7rem;
+    border: 0.5px solid var(--gold-dim);
+    color: var(--gold);
+    padding: 0.85rem 2rem;
+    font-family: var(--font-mono);
+    font-size: 0.62rem;
+    letter-spacing: 0.18em;
+    text-transform: uppercase;
+    text-decoration: none;
+    transition: background 0.3s, transform 0.2s;
+  }
+  .btn-ghost:hover { background: var(--gold-faint); transform: translateY(-1px); }
+
+  .hero-meta {
+    position: absolute;
+    right: 68px; bottom: 3.5rem;
+    z-index: 3;
+    display: flex;
+    flex-direction: column;
+    align-items: flex-end;
+    gap: 0.4rem;
+    opacity: 0;
+    animation: fadeUp 0.9s ease 0.7s forwards;
+  }
+  .hero-meta-item {
+    font-family: var(--font-mono);
+    font-size: 0.52rem;
+    letter-spacing: 0.15em;
+    text-transform: uppercase;
+    color: var(--cream-40);
+  }
+  .hero-meta-item span { color: var(--gold); margin-left: 0.5rem; opacity: 0.7; }
+
+  /* REEL TICKER */
+  .ticker-bar {
+    background: var(--ink-2);
+    border-top: var(--border);
+    border-bottom: var(--border);
+    overflow: hidden;
+    padding: 0.9rem 0;
+    position: relative;
+  }
+  .ticker-track {
+    display: flex;
+    white-space: nowrap;
+    animation: ticker 28s linear infinite;
+  }
+  .ticker-item {
+    font-family: var(--font-display);
+    font-size: 0.85rem;
+    letter-spacing: 0.2em;
+    color: var(--cream-20);
+    padding: 0 2.5rem;
+    display: flex;
+    align-items: center;
+    gap: 2.5rem;
+  }
+  .ticker-item::after {
+    content: '◆';
+    font-size: 0.4rem;
+    color: var(--gold);
+    opacity: 0.5;
+  }
+  @keyframes ticker {
+    0% { transform: translateX(0); }
+    100% { transform: translateX(-50%); }
+  }
+
+  /* SECTION SCAFFOLDING */
+  section { position: relative; }
+  .section-inner { padding: 6rem 3rem; }
+  .section-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-end;
+    margin-bottom: 3.5rem;
+    padding-bottom: 1.2rem;
+    border-bottom: var(--border);
+  }
+  .section-eyebrow {
+    font-family: var(--font-mono);
+    font-size: 0.58rem;
+    letter-spacing: 0.25em;
+    text-transform: uppercase;
+    color: var(--gold);
+    margin-bottom: 0.5rem;
+    opacity: 0.8;
+  }
+  .section-title {
+    font-family: var(--font-display);
+    font-size: clamp(2rem, 5vw, 3.2rem);
+    letter-spacing: 0.05em;
+    color: var(--cream);
+    line-height: 1;
+  }
+  .link-more {
+    font-family: var(--font-mono);
+    font-size: 0.58rem;
+    letter-spacing: 0.18em;
+    text-transform: uppercase;
+    color: var(--gold);
+    text-decoration: none;
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    border-bottom: 0.5px solid var(--gold-dim);
+    padding-bottom: 2px;
+    white-space: nowrap;
+    transition: color 0.3s;
+  }
+  .link-more:hover { color: var(--cream); border-color: var(--cream-40); }
+
+  /* CATEGORY STRIP */
+  .cat-strip {
+    display: grid;
+    grid-template-columns: repeat(5, 1fr);
+    border-bottom: var(--border);
+  }
+  .cat-item {
+    padding: 1.6rem 1rem;
+    border-right: var(--border);
+    text-align: center;
+    cursor: auto;
+    transition: background 0.3s;
+    position: relative;
+    overflow: hidden;
+    text-decoration: none;
+  }
+  .cat-item::before {
+    content: '';
+    position: absolute;
+    bottom: 0; left: 0; right: 0;
+    height: 2px;
+    background: var(--gold);
+    transform: scaleX(0);
+    transform-origin: left;
+    transition: transform 0.4s ease;
+  }
+  .cat-item:hover::before { transform: scaleX(1); }
+  .cat-item:last-child { border-right: none; }
+  .cat-item:hover { background: var(--gold-faint); }
+  .cat-num {
+    font-family: var(--font-mono);
+    font-size: 0.52rem;
+    color: var(--gold);
+    margin-bottom: 0.5rem;
+    opacity: 0.6;
+  }
+  .cat-label {
+    font-family: var(--font-display);
+    font-size: 0.9rem;
+    letter-spacing: 0.1em;
+    color: var(--cream-60);
+    transition: color 0.3s;
+  }
+  .cat-item:hover .cat-label { color: var(--cream); }
+
+  /* WORK GRID */
+  #work { border-top: var(--border); }
+  .work-grid {
+    display: grid;
+    grid-template-columns: 2fr 1fr;
+    gap: 1.5px;
+    background: rgba(17,17,17,0.06);
+  }
+  .work-card {
+    position: relative;
+    overflow: hidden;
+    background: var(--ink-2);
+    cursor: auto;
+  }
+  .work-card.featured { grid-row: span 2; }
+
+  .card-thumb {
+    width: 100%;
+    display: block;
+    aspect-ratio: 16/9;
+    position: relative;
+    overflow: hidden;
+  }
+  .work-card.featured .card-thumb { aspect-ratio: unset; height: 100%; min-height: 440px; }
+  .work-grid .work-card:not(.featured) .card-thumb { aspect-ratio: unset; height: 100%; }
+
+  .card-bg {
+    position: absolute; inset: 0;
+    transition: transform 0.7s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+  }
+  .work-card:hover .card-bg { transform: scale(1.05); }
+
+  /* Placeholder gradient backgrounds */
+  .bg-1 { background: linear-gradient(145deg, #dedad4 0%, #d4d0c8 40%, #e4e0da 100%); }
+  .bg-2 { background: linear-gradient(145deg, #d0d4dc 0%, #c8ccd8 50%, #daddea 100%); }
+  .bg-3 { background: linear-gradient(145deg, #dcd0d0 0%, #d4c8c8 50%, #e4dada 100%); }
+  .bg-4 { background: linear-gradient(145deg, #d0dcd2 0%, #c8d4cc 50%, #dae4dc 100%); }
+
+  .card-scan {
+    position: absolute; inset: 0;
+    background: repeating-linear-gradient(0deg, transparent, transparent 3px, rgba(17,17,17,0.04) 3px, rgba(17,17,17,0.04) 4px);
+    pointer-events: none;
+  }
+  .card-vignette {
+    position: absolute; inset: 0;
+    background: radial-gradient(ellipse at center, transparent 40%, rgba(247,245,241,0.4) 100%);
+  }
+  .card-ghost-text {
+    position: absolute;
+    bottom: 30%; left: 50%;
+    transform: translateX(-50%);
+    font-family: var(--font-display);
+    font-size: 4.5rem;
+    color: rgba(17,17,17,0.06);
+    letter-spacing: 0.3em;
+    white-space: nowrap;
+    pointer-events: none;
+    transition: opacity 0.5s;
+  }
+  .work-card.featured .card-ghost-text { font-size: 7rem; }
+  .work-card:hover .card-ghost-text { opacity: 0.5; }
+
+  /* Play button */
+  .play-btn {
+    position: absolute;
+    top: 50%; left: 50%;
+    transform: translate(-50%, -50%) scale(0.7);
+    width: 60px; height: 60px;
+    border: 0.5px solid rgba(200,169,110,0.5);
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    opacity: 0;
+    transition: opacity 0.3s, transform 0.3s, background 0.3s;
+    z-index: 2;
+  }
+  .play-btn svg { width: 18px; height: 18px; fill: var(--gold); margin-left: 4px; }
+  .work-card:hover .play-btn { opacity: 1; transform: translate(-50%, -50%) scale(1); }
+  .work-card:hover .play-btn:hover { background: rgba(200,169,110,0.15); }
+
+  .card-overlay {
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(to top, rgba(10,10,8,0.92) 0%, rgba(10,10,8,0.3) 50%, transparent 100%);
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-end;
+    padding: 1.75rem;
+    z-index: 1;
+  }
+  .card-cat {
+    font-family: var(--font-mono);
+    font-size: 0.52rem;
+    letter-spacing: 0.22em;
+    text-transform: uppercase;
+    color: var(--gold);
+    margin-bottom: 0.4rem;
+    opacity: 0.85;
+  }
+  .card-title {
+    font-family: var(--font-body);
+    font-size: 1.2rem;
+    font-weight: 300;
+    color: var(--cream);
+    line-height: 1.2;
+  }
+  .work-card.featured .card-title { font-size: 2rem; }
+  .card-year {
+    font-family: var(--font-mono);
+    font-size: 0.5rem;
+    color: var(--cream-40);
+    margin-top: 0.3rem;
+    letter-spacing: 0.15em;
+  }
+
+  /* ABOUT */
+  #about {
+    border-top: var(--border);
+    background: var(--ink-2);
+  }
+  .about-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 6rem;
+    align-items: start;
+  }
+  .about-left {}
+  /* Mobile portrait — oculto en desktop */
+  .mobile-portrait-wrap { display: none; }
+  .about-eyebrow {
+    font-family: var(--font-mono);
+    font-size: 0.58rem;
+    letter-spacing: 0.28em;
+    text-transform: uppercase;
+    color: var(--gold);
+    margin-bottom: 1.5rem;
+    display: flex;
+    align-items: center;
+    gap: 0.8rem;
+  }
+  .about-eyebrow::before {
+    content: '';
+    display: block;
+    width: 32px; height: 0.5px;
+    background: var(--gold);
+  }
+  .about-name {
+    font-family: var(--font-display);
+    font-size: clamp(3rem, 6vw, 5rem);
+    line-height: 0.92;
+    letter-spacing: 0.03em;
+    color: var(--cream);
+    margin-bottom: 2rem;
+  }
+  .about-name .sub {
+    font-family: var(--font-body);
+    font-size: 0.55em;
+    font-style: italic;
+    font-weight: 300;
+    color: var(--gold);
+    display: block;
+    margin-top: 0.3rem;
+    letter-spacing: 0;
+    white-space: nowrap;
+  }
+  .about-bio {
+    font-size: 1.05rem;
+    font-weight: 300;
+    line-height: 1.85;
+    color: var(--cream-60);
+    margin-bottom: 2.5rem;
+  }
+  .about-bio em { font-style: italic; color: rgba(232,226,212,0.85); }
+  .about-bio p + p { margin-top: 1rem; }
+
+  .about-stats {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 2rem;
+    padding-top: 2rem;
+    border-top: var(--border);
+    margin-top: 2.5rem;
+  }
+  .stat-number {
+    font-family: var(--font-display);
+    font-size: 2.5rem;
+    color: var(--gold);
+    line-height: 1;
+    margin-bottom: 0.3rem;
+  }
+  .stat-label {
+    font-family: var(--font-mono);
+    font-size: 0.52rem;
+    letter-spacing: 0.15em;
+    text-transform: uppercase;
+    color: var(--cream-40);
+  }
+
+  /* Awards filmstrip */
+  .awards-strip {
+    margin-top: 2.5rem;
+    padding-top: 2rem;
+    border-top: var(--border);
+  }
+  .awards-eyebrow {
+    font-family: var(--font-mono);
+    font-size: 0.58rem;
+    letter-spacing: 0.25em;
+    text-transform: uppercase;
+    color: var(--gold);
+    margin-bottom: 1.4rem;
+    opacity: 0.7;
+  }
+  .awards-filmstrip {
+    display: flex;
+    gap: 0;
+    overflow-x: auto;
+    scrollbar-width: none;
+    padding-bottom: 0.5rem;
+    cursor: grab;
+    user-select: none;
+  }
+  .awards-filmstrip:active { cursor: grabbing; }
+  .awards-filmstrip::-webkit-scrollbar { display: none; }
+  .award-frame {
+    flex: 0 0 auto;
+    width: 152px;
+    margin-right: 12px;
+  }
+  .award-film-edge {
+    height: 11px;
+    background: #0a0a08;
+    border: 0.5px solid rgba(232,226,212,0.08);
+    display: flex;
+    align-items: center;
+    gap: 5px;
+    padding: 0 5px;
+    box-sizing: border-box;
+  }
+  .award-film-edge .sprocket {
+    width: 9px;
+    height: 7px;
+    border: 0.5px solid rgba(232,226,212,0.22);
+    border-radius: 1px;
+    flex-shrink: 0;
+    background: rgba(0,0,0,0.5);
+  }
+  .award-photo {
+    position: relative;
+    width: 152px;
+    height: 108px;
+    overflow: hidden;
+    background: var(--ink-2);
+    border-left: 0.5px solid rgba(232,226,212,0.08);
+    border-right: 0.5px solid rgba(232,226,212,0.08);
+  }
+  .award-photo img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    filter: grayscale(0.25) contrast(1.05);
+    display: block;
+    transition: filter 0.4s, transform 0.5s;
+  }
+  .award-frame:hover .award-photo img {
+    filter: grayscale(0) contrast(1.05);
+    transform: scale(1.04);
+  }
+  .award-photo-scan {
+    position: absolute;
+    inset: 0;
+    background: repeating-linear-gradient(
+      0deg,
+      transparent, transparent 3px,
+      rgba(17,17,17,0.04) 3px,
+      rgba(17,17,17,0.04) 4px
+    );
+    pointer-events: none;
+    z-index: 2;
+  }
+  .award-photo-placeholder {
+    width: 100%;
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 0.5rem;
+    color: rgba(232,226,212,0.15);
+  }
+  .award-photo-placeholder svg {
+    width: 24px; height: 24px;
+    opacity: 0.3;
+  }
+  .award-photo-placeholder span {
+    font-family: var(--font-mono);
+    font-size: 0.42rem;
+    letter-spacing: 0.15em;
+    text-transform: uppercase;
+  }
+  /* Shared award info block */
+  .award-info {
+    margin-top: 1.1rem;
+    display: flex;
+    flex-direction: column;
+    gap: 0.3rem;
+  }
+  .award-prize {
+    font-family: var(--font-display);
+    font-size: 1.05rem;
+    color: var(--gold);
+    letter-spacing: 0.08em;
+    line-height: 1;
+  }
+  .award-info-name {
+    font-family: var(--font-mono);
+    font-size: 0.5rem;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    color: var(--cream-60);
+    line-height: 1.6;
+  }
+  .award-info-project {
+    font-family: var(--font-body);
+    font-size: 0.78rem;
+    font-style: italic;
+    font-weight: 300;
+    color: rgba(232,226,212,0.5);
+  }
+  .award-link {
+    display: inline-block;
+    margin-top: 0.4rem;
+    font-family: var(--font-mono);
+    font-size: 0.48rem;
+    letter-spacing: 0.15em;
+    text-transform: uppercase;
+    color: var(--gold);
+    text-decoration: none;
+    opacity: 0.65;
+    transition: opacity 0.3s;
+  }
+  .award-link:hover { opacity: 1; }
+
+  /* Award photo — clickable cursor */
+  .award-photo { cursor: zoom-in; }
+
+  /* Lightbox */
+  .photo-lightbox {
+    position: fixed;
+    inset: 0;
+    z-index: 1200;
+    background: rgba(247,245,241,0.96);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    opacity: 0;
+    pointer-events: none;
+    transition: opacity 0.3s ease;
+  }
+  .photo-lightbox.open {
+    opacity: 1;
+    pointer-events: all;
+  }
+  .lightbox-img-wrap {
+    position: relative;
+    max-width: min(90vw, 960px);
+    max-height: 85vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+  .lightbox-img-wrap img {
+    max-width: 100%;
+    max-height: 85vh;
+    object-fit: contain;
+    display: block;
+    border: 0.5px solid rgba(232,226,212,0.12);
+    transform: scale(0.96);
+    transition: transform 0.35s cubic-bezier(0.16,1,0.3,1);
+  }
+  .photo-lightbox.open .lightbox-img-wrap img {
+    transform: scale(1);
+  }
+  .lightbox-scan {
+    position: absolute;
+    inset: 0;
+    background: repeating-linear-gradient(
+      0deg,
+      transparent, transparent 3px,
+      rgba(17,17,17,0.04) 3px,
+      rgba(17,17,17,0.04) 4px
+    );
+    pointer-events: none;
+  }
+  .lightbox-close {
+    position: fixed;
+    top: 1.5rem;
+    right: 1.8rem;
+    background: none;
+    border: 0.5px solid rgba(17,17,17,0.2);
+    color: var(--cream-60);
+    font-family: var(--font-mono);
+    font-size: 0.55rem;
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+    padding: 0.5rem 0.9rem;
+    cursor: pointer;
+    transition: border-color 0.2s, color 0.2s;
+  }
+  .lightbox-close:hover {
+    border-color: var(--gold);
+    color: var(--gold);
+  }
+  .lightbox-nav {
+    position: fixed;
+    top: 50%;
+    transform: translateY(-50%);
+    background: none;
+    border: 0.5px solid rgba(232,226,212,0.15);
+    color: var(--cream-60);
+    width: 44px;
+    height: 44px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    transition: border-color 0.2s, color 0.2s;
+  }
+  .lightbox-nav:hover { border-color: var(--gold); color: var(--gold); }
+  .lightbox-prev { left: 1.5rem; }
+  .lightbox-next { right: 1.5rem; }
+  .lightbox-nav svg { width: 16px; height: 16px; }
+  .lightbox-counter {
+    position: fixed;
+    bottom: 1.5rem;
+    left: 50%;
+    transform: translateX(-50%);
+    font-family: var(--font-mono);
+    font-size: 0.5rem;
+    letter-spacing: 0.2em;
+    color: var(--cream-40);
+    text-transform: uppercase;
+  }
+
+  /* Education timeline */
+  .about-right {}
+  .edu-title {
+    font-family: var(--font-mono);
+    font-size: 0.58rem;
+    letter-spacing: 0.25em;
+    text-transform: uppercase;
+    color: var(--gold);
+    margin-bottom: 2rem;
+    opacity: 0.7;
+  }
+  .edu-list { list-style: none; }
+  .edu-item {
+    display: grid;
+    grid-template-columns: 48px 1fr;
+    gap: 1.2rem;
+    padding: 1.4rem 0;
+    border-bottom: var(--border);
+    align-items: start;
+  }
+  .edu-item:first-child { border-top: var(--border); }
+  .edu-year {
+    font-family: var(--font-mono);
+    font-size: 0.6rem;
+    color: var(--gold);
+    opacity: 0.6;
+    padding-top: 3px;
+  }
+  .edu-body {}
+  .edu-degree {
+    font-size: 1rem;
+    font-weight: 400;
+    color: var(--cream);
+    margin-bottom: 0.2rem;
+    line-height: 1.3;
+  }
+  .edu-school {
+    font-size: 0.85rem;
+    font-weight: 300;
+    font-style: italic;
+    color: var(--cream-60);
+  }
+  .edu-location {
+    font-family: var(--font-mono);
+    font-size: 0.5rem;
+    letter-spacing: 0.15em;
+    text-transform: uppercase;
+    color: var(--gold);
+    opacity: 0.5;
+    margin-top: 0.3rem;
+  }
+
+  /* Portrait pair — two frames side by side */
+  .portrait-pair {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 1rem;
+    margin-bottom: 3rem;
+  }
+  /* Second frame drops down slightly — like two photos on a table */
+  .portrait-pair .portrait-frame:last-child {
+    margin-top: 1.8rem;
+  }
+  /* Portrait frame */
+  .portrait-frame {
+    position: relative;
+    border: var(--border);
+    padding: 10px;
+  }
+  /* Your photo — drop an <img> inside .portrait-inner and it fits automatically */
+  .portrait-inner img {
+    position: absolute;
+    inset: 0;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    object-position: center top;
+    z-index: 2;
+  }
+  .portrait-inner {
+    aspect-ratio: 3/4;
+    background: linear-gradient(155deg, #dedad4 0%, #d4d0cc 50%, #d0d4dc 100%);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    position: relative;
+    overflow: hidden;
+  }
+  .portrait-scan {
+    position: absolute; inset: 0;
+    background: repeating-linear-gradient(0deg, transparent, transparent 3px, rgba(17,17,17,0.04) 3px, rgba(17,17,17,0.04) 4px);
+  }
+  .portrait-text {
+    font-family: var(--font-display);
+    font-size: 0.8rem;
+    letter-spacing: 0.5em;
+    color: rgba(200,169,110,0.1);
+    text-align: center;
+    line-height: 3;
+    position: relative;
+    z-index: 1;
+  }
+  .portrait-caption {
+    margin-top: 0.8rem;
+    font-family: var(--font-mono);
+    font-size: 0.5rem;
+    letter-spacing: 0.18em;
+    text-transform: uppercase;
+    color: var(--cream-40);
+    text-align: center;
+  }
+  .portrait-caption em { color: var(--gold); opacity: 0.6; font-style: normal; }
+
+  /* Corner brackets */
+  .corner { position: absolute; width: 16px; height: 16px; border-color: var(--gold); border-style: solid; opacity: 0.35; }
+  .corner.tl { top: -1px; left: -1px; border-width: 1px 0 0 1px; }
+  .corner.tr { top: -1px; right: -1px; border-width: 1px 1px 0 0; }
+  .corner.bl { bottom: -1px; left: -1px; border-width: 0 0 1px 1px; }
+  .corner.br { bottom: -1px; right: -1px; border-width: 0 1px 1px 0; }
+
+  /* SERVICES */
+  #services {
+    border-top: var(--border);
+  }
+  .services-grid {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 1.5px;
+    background: rgba(17,17,17,0.06);
+  }
+  .service-card {
+    background: var(--ink-2);
+    padding: 2.5rem 1.8rem;
+    position: relative;
+    overflow: hidden;
+    transition: background 0.3s;
+    cursor: auto;
+  }
+  .service-card:hover { background: var(--ink-3); }
+  .service-card::after {
+    content: '';
+    position: absolute;
+    bottom: 0; left: 0; right: 0;
+    height: 2px;
+    background: var(--gold);
+    transform: scaleX(0);
+    transform-origin: left;
+    transition: transform 0.4s ease;
+  }
+  .service-card:hover::after { transform: scaleX(1); }
+  .service-icon {
+    width: 32px; height: 32px;
+    margin-bottom: 1.5rem;
+    opacity: 0.6;
+    transition: opacity 0.3s;
+  }
+  .service-card:hover .service-icon { opacity: 1; }
+  .service-icon svg { width: 100%; height: 100%; stroke: var(--gold); fill: none; stroke-width: 1; }
+  .service-num {
+    position: absolute;
+    top: 1.8rem; right: 1.8rem;
+    font-family: var(--font-mono);
+    font-size: 0.5rem;
+    color: var(--gold);
+    opacity: 0.3;
+    letter-spacing: 0.1em;
+  }
+  .service-name {
+    font-family: var(--font-display);
+    font-size: 1.3rem;
+    letter-spacing: 0.06em;
+    color: var(--cream);
+    margin-bottom: 0.8rem;
+  }
+  .service-desc {
+    font-size: 0.88rem;
+    font-weight: 300;
+    font-style: italic;
+    color: var(--cream-60);
+    line-height: 1.7;
+  }
+
+  /* CONTACT */
+  #contact {
+    border-top: var(--border);
+    background: var(--ink-2);
+  }
+  .contact-inner {
+    padding: 6rem 3rem;
+    display: grid;
+    grid-template-columns: 1.2fr 1fr;
+    gap: 6rem;
+    align-items: center;
+  }
+  .contact-left {}
+  .contact-eyebrow {
+    font-family: var(--font-mono);
+    font-size: 0.58rem;
+    letter-spacing: 0.28em;
+    text-transform: uppercase;
+    color: var(--gold);
+    margin-bottom: 1.5rem;
+    display: flex;
+    align-items: center;
+    gap: 0.8rem;
+  }
+  .contact-eyebrow::before {
+    content: '';
+    display: block;
+    width: 32px; height: 0.5px;
+    background: var(--gold);
+  }
+  .contact-h {
+    font-family: var(--font-display);
+    font-size: clamp(3.5rem, 7vw, 5.5rem);
+    line-height: 0.9;
+    letter-spacing: 0.02em;
+    color: var(--cream);
+    margin-bottom: 2rem;
+  }
+  .contact-h em {
+    font-family: var(--font-body);
+    font-style: italic;
+    font-weight: 300;
+    color: var(--gold);
+    font-size: 0.85em;
+  }
+  .contact-p {
+    font-size: 1rem;
+    font-weight: 300;
+    color: var(--cream-60);
+    line-height: 1.75;
+    margin-bottom: 2.5rem;
+    max-width: 380px;
+  }
+  .contact-links { display: flex; flex-direction: column; gap: 1rem; }
+  .contact-link {
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+    font-family: var(--font-mono);
+    font-size: 0.6rem;
+    letter-spacing: 0.15em;
+    text-transform: uppercase;
+    color: var(--cream-60);
+    text-decoration: none;
+    padding: 1rem 1.2rem;
+    border: var(--border);
+    transition: border-color 0.3s, background 0.3s, color 0.3s;
+  }
+  .contact-link:hover { border-color: var(--gold-dim); background: var(--gold-faint); color: var(--cream); }
+  .contact-link-icon { color: var(--gold); font-size: 1rem; flex-shrink: 0; }
+  .contact-link-label { flex: 1; }
+  .contact-link-arrow { color: var(--gold); opacity: 0.5; }
+
+  .contact-right {}
+  .contact-form { display: flex; flex-direction: column; gap: 1.2rem; }
+  .form-row { display: grid; grid-template-columns: 1fr 1fr; gap: 1.2rem; }
+  .form-group { display: flex; flex-direction: column; gap: 0.4rem; }
+  .form-group label {
+    font-family: var(--font-mono);
+    font-size: 0.52rem;
+    letter-spacing: 0.18em;
+    text-transform: uppercase;
+    color: var(--gold);
+    opacity: 0.7;
+  }
+  .form-group input,
+  .form-group textarea,
+  .form-group select {
+    background: var(--ink);
+    border: var(--border);
+    color: var(--cream);
+    font-family: var(--font-body);
+    font-size: 0.95rem;
+    font-weight: 300;
+    padding: 0.8rem 1rem;
+    outline: none;
+    transition: border-color 0.3s;
+    width: 100%;
+    appearance: none;
+  }
+  .form-group input:focus,
+  .form-group textarea:focus,
+  .form-group select:focus {
+    border-color: var(--gold-dim);
+  }
+  .form-group textarea { resize: vertical; min-height: 120px; }
+  .form-group select option { background: var(--ink); }
+  .form-submit {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin-top: 0.5rem;
+  }
+  .form-note {
+    font-family: var(--font-mono);
+    font-size: 0.5rem;
+    letter-spacing: 0.12em;
+    color: var(--cream-40);
+  }
+
+  /* FOOTER */
+  footer {
+    border-top: var(--border);
+    padding: 2rem 3rem;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    flex-wrap: wrap;
+    gap: 1rem;
+  }
+  .footer-logo {
+    font-family: var(--font-display);
+    font-size: 1.2rem;
+    letter-spacing: 0.14em;
+    color: var(--cream-40);
+  }
+  .footer-logo span { color: var(--gold); opacity: 0.5; }
+  .footer-links { display: flex; gap: 2rem; list-style: none; }
+  .footer-links a {
+    font-family: var(--font-mono);
+    font-size: 0.52rem;
+    letter-spacing: 0.15em;
+    text-transform: uppercase;
+    color: var(--cream-40);
+    text-decoration: none;
+    transition: color 0.3s;
+  }
+  .footer-links a:hover { color: var(--gold); }
+  .footer-copy {
+    font-family: var(--font-mono);
+    font-size: 0.5rem;
+    letter-spacing: 0.1em;
+    color: var(--cream-20);
+  }
+
+  /* SCROLL REVEAL */
+  .reveal {
+    opacity: 0;
+    transform: translateY(28px);
+    transition: opacity 0.8s ease, transform 0.8s ease;
+  }
+  .reveal.visible { opacity: 1; transform: translateY(0); }
+  .reveal-delay-1 { transition-delay: 0.1s; }
+  .reveal-delay-2 { transition-delay: 0.2s; }
+  .reveal-delay-3 { transition-delay: 0.3s; }
+  .reveal-delay-4 { transition-delay: 0.4s; }
+
+  /* ANIMATIONS */
+  @keyframes fadeUp {
+    from { opacity: 0; transform: translateY(24px); }
+    to { opacity: 1; transform: translateY(0); }
+  }
+
+  /* ─────────────────────────────────────────
+     COYOTE MASCOT — left of the about name
+     Sits in a flex row with the name block.
+  ───────────────────────────────────────── */
+  .about-name-group {
+    display: flex;
+    align-items: center;
+    gap: 1.2rem;
+    margin-bottom: 2rem;
+  }
+  .about-coyote {
+    flex-shrink: 0;
+    margin-left: auto; /* flota al extremo derecho */
+  }
+  .about-coyote img {
+    width: 160px;
+    height: 160px;
+    object-fit: contain;
+    filter: none;
+    opacity: 0.32;
+    transition: opacity 0.5s;
+  }
+  .about-coyote:hover img { opacity: 0.55; }
+
+  /* ── CATALOG OVERLAY ── */
+  .catalog-overlay {
+    position: fixed;
+    inset: 0;
+    background: var(--ink);
+    z-index: 800;
+    transform: translateY(100%);
+    transition: transform 0.55s cubic-bezier(0.16, 1, 0.3, 1);
+    overflow-y: auto;
+    overflow-x: hidden;
+  }
+  .catalog-overlay.open { transform: translateY(0); }
+
+  .catalog-topbar {
+    position: sticky;
+    top: 0;
+    z-index: 10;
+    background: rgba(247,245,241,0.96);
+    backdrop-filter: blur(14px);
+    border-bottom: var(--border);
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 1.2rem 3rem;
+  }
+  .catalog-logo {
+    font-family: var(--font-display);
+    font-size: 1.4rem;
+    letter-spacing: 0.14em;
+    color: var(--cream);
+    text-decoration: none;
+  }
+  .catalog-logo span { color: var(--gold); }
+  .catalog-close-btn {
+    background: none;
+    border: 0.5px solid rgba(17,17,17,0.2);
+    color: var(--cream-60);
+    font-family: var(--font-mono);
+    font-size: 0.58rem;
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+    padding: 0.6rem 1.3rem;
+    cursor: auto;
+    transition: border-color 0.3s, color 0.3s;
+  }
+  .catalog-close-btn:hover { border-color: var(--gold); color: var(--gold); }
+
+  .catalog-body {
+    padding: 3rem;
+    max-width: 1400px;
+    margin: 0 auto;
+  }
+  .catalog-headline {
+    font-family: var(--font-display);
+    font-size: clamp(2.2rem, 5vw, 4.5rem);
+    letter-spacing: 0.04em;
+    color: var(--cream);
+    margin: 0.6rem 0 2rem;
+  }
+  .catalog-filters {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.5rem;
+    margin-bottom: 2.5rem;
+    padding-bottom: 2rem;
+    border-bottom: var(--border);
+  }
+  .filter-pill {
+    background: none;
+    border: 0.5px solid rgba(232,226,212,0.15);
+    color: var(--cream-60);
+    font-family: var(--font-mono);
+    font-size: 0.55rem;
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+    padding: 0.55rem 1.15rem;
+    cursor: auto;
+    transition: border-color 0.25s, color 0.25s, background 0.25s;
+  }
+  .filter-pill:hover { color: var(--cream); border-color: rgba(232,226,212,0.4); }
+  .filter-pill.active {
+    background: rgba(200,169,110,0.1);
+    border-color: var(--gold);
+    color: var(--gold);
+  }
+  .catalog-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 1.5px;
+    background: rgba(17,17,17,0.06);
+  }
+  .catalog-card {
+    position: relative;
+    overflow: hidden;
+    background: var(--ink-2);
+    cursor: auto;
+  }
+  .catalog-card .card-thumb { aspect-ratio: 16/9; min-height: unset; height: auto; }
+  .catalog-count {
+    font-family: var(--font-mono);
+    font-size: 0.52rem;
+    letter-spacing: 0.2em;
+    color: var(--cream-40);
+    margin-bottom: 2rem;
+  }
+  .bg-5 { background: linear-gradient(145deg, #d2d6de 0%, #caced8 50%, #dadeea 100%); }
+  .bg-6 { background: linear-gradient(145deg, #d8d0dc 0%, #d0c8d8 50%, #e0d8e4 100%); }
+  .bg-7 { background: linear-gradient(145deg, #dddad4 0%, #d5d2ca 50%, #e5e2da 100%); }
+
+  /* MOBILE */
+  @media (max-width: 900px) {
+    nav { padding: 1.2rem 1.5rem; }
+    .nav-links { display: none; }
+    .hamburger { display: block; }
+    .nav-links.open {
+      display: flex;
+      flex-direction: column;
+      position: fixed;
+      inset: 0;
+      background: rgba(247,245,241,0.97);
+      z-index: 400;
+      justify-content: center;
+      align-items: center;
+      gap: 2.5rem;
+    }
+    .nav-links.open a { font-size: 0.85rem; }
+
+    #hero { padding: 0 1.5rem 3rem; }
+    .hero-filmstrip { display: none; }
+    .hero-meta { display: none; }
+    .hero-h1 { font-size: 4rem; }
+
+    .cat-strip { grid-template-columns: repeat(3, 1fr); }
+    .cat-item:nth-child(4), .cat-item:nth-child(5), .cat-item:nth-child(6) { display: none; }
+
+    .section-inner { padding: 4rem 1.5rem; }
+
+    .work-grid { grid-template-columns: 1fr; }
+    .work-card.featured { grid-row: span 1; }
+    .work-card.featured .card-thumb { min-height: 260px; }
+
+    /* About */
+    .about-grid { display: block; }
+    .about-left { margin-bottom: 3rem; }
+    .about-right { display: block; }
+
+    /* Services — 1 columna en móvil */
+    .services-grid { grid-template-columns: 1fr; }
+    .service-card { padding: 1.8rem 1.5rem; }
+
+    /* Contact */
+    .contact-inner { grid-template-columns: 1fr; gap: 3rem; padding: 4rem 1.5rem; }
+    .form-row { grid-template-columns: 1fr; }
+
+    /* Footer */
+    footer { padding: 1.5rem; }
+    .footer-links { display: none; }
+
+    /* Cursor */
+    body { cursor: auto; }
+    .cursor, .cursor-ring { display: none; }
+
+    /* Catalog overlay — 2 columnas y padding reducido */
+    .catalog-grid { grid-template-columns: repeat(2, 1fr); }
+    .catalog-topbar { padding: 1rem 1.2rem; }
+    .catalog-body { padding: 1.5rem; }
+    .catalog-headline { font-size: 2rem; }
+
+    /* Work cards no-featured: restaurar aspect-ratio en móvil */
+    .work-grid .work-card:not(.featured) .card-thumb {
+      aspect-ratio: 16/9;
+      height: auto;
+    }
+
+    /* Hero h1 — un poco más pequeño para textos largos */
+    .hero-h1 { font-size: 3.4rem; }
+
+    /* Prevent horizontal overflow on mobile */
+    .about-name .sub { white-space: normal; }
+    .link-more { white-space: normal; }
+    .card-ghost-text { display: none; }
+    .hero-eyebrow { white-space: normal; }
+
+    /* Coyote — smaller on mobile, doesn't push content */
+    .about-name-group { flex-wrap: wrap; }
+    .about-coyote { margin-left: 0; }
+    .about-coyote img { width: 80px; height: 80px; }
+
+    /* Ensure text containers don't escape viewport */
+    .about-left, .about-bio, .about-name { max-width: 100%; }
+    .about-bio p { word-break: break-word; }
+
+    /* Portrait pair — oculto en móvil, reemplazado por img simple */
+    .portrait-pair { display: none; }
+    .mobile-portrait-wrap { display: none; }
+
+    /* Retrato móvil — img en flujo normal, sin absolute */
+    .mobile-portrait-wrap {
+      margin-bottom: 2rem;
+      width: 160px;
+      margin-left: auto;
+      margin-right: auto;
+      text-align: center;
+    }
+    .mobile-portrait-img {
+      width: 160px;
+      height: 210px;
+      object-fit: cover;
+      object-position: center top;
+      display: block;
+      border: 0.5px solid rgba(232,226,212,0.15);
+    }
+    .mobile-portrait-caption {
+      font-family: var(--font-mono);
+      font-size: 0.45rem;
+      letter-spacing: 0.18em;
+      text-transform: uppercase;
+      color: var(--cream-40);
+      margin-top: 0.5rem;
+      text-align: center;
+    }
+  }
+
+  /* Scrollbar */
+  ::-webkit-scrollbar { width: 2px; }
+  ::-webkit-scrollbar-track { background: var(--ink); }
+  ::-webkit-scrollbar-thumb { background: #aaa; opacity: 0.3; }
+
+  /* =====================================================
+     EDITORIAL OVERRIDE — Black & White, Clean, Minimal
+     ===================================================== */
+
+  /* Remove all film/cinema decorative effects */
+  .card-scan, .portrait-scan, .award-photo-scan,
+  .card-vignette, .card-ghost-text,
+  .hero-filmstrip, .hero-vline, .hero-hline,
+  .hero-grain, .hero-light { display: none !important; }
+
+  /* Clean nav */
+  nav {
+    background: #fff;
+    border-bottom: 1px solid #e8e8e8;
+    backdrop-filter: none;
+  }
+  .nav-logo { color: #111; letter-spacing: 0.08em; }
+  .nav-logo span { color: #111; }
+  .nav-links a { color: #555; }
+  .nav-links a:hover { color: #111; }
+  .nav-contact {
+    border-color: #111 !important;
+    color: #111 !important;
+    background: none !important;
+  }
+  .nav-contact:hover { background: #111 !important; color: #fff !important; }
+  .lang-toggle { border-color: #ddd; color: #555; }
+  .hamburger span { background: #111; }
+
+  /* Hero — split layout: 1/3 text (white) + 2/3 video */
+  #hero {
+    background: #fff !important;
+    min-height: 100vh;
+    display: flex;
+    align-items: stretch;
+    padding: 0;
+    border-bottom: 1px solid #e8e8e8;
+    position: relative;
+  }
+  /* Video covers right 2/3 */
+  .hero-bg {
+    position: absolute !important;
+    top: 0; right: 0; bottom: 0;
+    left: 33.333%;
+    background: #000;
+  }
+  .hero-bg::after { display: none; }
+  .hero-bg video { opacity: 1 !important; }
+
+  /* Text in left 1/3 */
+  .hero-content {
+    position: relative;
+    z-index: 2;
+    width: 33.333%;
+    flex-shrink: 0;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    padding: 4rem 3rem 4rem 4rem;
+    background: #fff;
+    border-right: 1px solid #e8e8e8;
+  }
+
+  /* Text colors — dark on white left column */
+  .hero-eyebrow { color: #999 !important; }
+  .hero-h1 { color: #111 !important; text-shadow: none !important; font-size: clamp(3rem, 4.5vw, 5.5rem) !important; }
+  .hero-sub { color: #666 !important; font-size: 0.9rem; }
+  #hero .btn-primary { background: #111 !important; color: #fff !important; border-color: #111 !important; white-space: nowrap; padding: 0.9rem 1.8rem; font-size: 0.58rem; }
+  #hero .btn-primary:hover { background: #fff !important; color: #111 !important; }
+  #hero .btn-ghost { border-color: #bbb !important; color: #111 !important; white-space: nowrap; padding: 0.9rem 1.8rem; font-size: 0.58rem; }
+  #hero .btn-ghost:hover { background: #111 !important; color: #fff !important; border-color: #111 !important; }
+  .hero-actions { display: flex; flex-wrap: wrap; gap: 0.8rem; margin-top: 2rem; }
+
+  /* Mobile — stack: text top, video bottom */
+  @media (max-width: 900px) {
+    #hero { flex-direction: column; min-height: auto; }
+    .hero-bg {
+      position: relative !important;
+      left: 0;
+      height: 55vw;
+      min-height: 240px;
+      flex-shrink: 0;
+    }
+    .hero-content {
+      width: 100%;
+      padding: 2.5rem 1.5rem;
+      border-right: none;
+      border-top: 1px solid #e8e8e8;
+      order: 2;
+    }
+    .hero-bg { order: 1; }
+  }
+  /* Hero text — white over dark video */
+  .hero-eyebrow { color: rgba(255,255,255,0.6); letter-spacing: 0.2em; margin-bottom: 1.5rem; }
+  .hero-h1 {
+    color: #fff;
+    font-size: clamp(5rem, 12vw, 10rem);
+    line-height: 0.88;
+    letter-spacing: 0.01em;
+    text-shadow: 0 2px 40px rgba(0,0,0,0.3);
+  }
+  .hero-h1 .italic-line { font-style: italic; }
+  .hero-sub { color: rgba(255,255,255,0.7); margin-top: 2rem; font-size: 1rem; }
+  #hero .btn-primary { background: #fff; color: #111; border-color: #fff; }
+  #hero .btn-primary:hover { background: transparent; color: #fff; }
+  #hero .btn-ghost { border-color: rgba(255,255,255,0.5); color: #fff; }
+  #hero .btn-ghost:hover { background: #fff; color: #111; border-color: #fff; }
+  .btn-primary {
+    background: #111;
+    color: #fff;
+    border: 1.5px solid #111;
+  }
+  .btn-primary:hover { background: #fff; color: #111; }
+  .btn-ghost {
+    border-color: #ccc;
+    color: #111;
+  }
+  .btn-ghost:hover { background: #111; color: #fff; border-color: #111; }
+
+  /* Hide hero-meta on video side */
+  .hero-meta { display: none !important; }
+
+  /* Ticker — subtle */
+  .ticker-bar { background: #f5f5f5; border-top: 1px solid #e8e8e8; border-bottom: 1px solid #e8e8e8; }
+  .ticker-item { color: #999; }
+  .ticker-item::after { color: #ccc; }
+
+  /* Section headings */
+  .section-eyebrow { color: #555; }
+  .section-title { color: #111; font-size: clamp(2.5rem, 6vw, 4rem); }
+  .link-more { color: #111; border-bottom-color: #333; font-size: 0.7rem; }
+  .link-more:hover { color: #555; }
+
+  /* Work grid — clean cards */
+  .work-grid { gap: 2px; background: #e8e8e8; }
+  .work-card { background: #fff; }
+  .work-card:hover .card-bg { transform: scale(1.03); }
+  .card-overlay {
+    background: linear-gradient(to top, rgba(0,0,0,0.75) 0%, transparent 100%);
+  }
+  .card-cat { color: rgba(255,255,255,0.85); font-size: 0.6rem; }
+  .card-title { color: #fff; }
+  .card-year { color: rgba(255,255,255,0.75); }
+  .play-btn {
+    border-color: rgba(255,255,255,0.5);
+    background: rgba(255,255,255,0.1);
+  }
+  .play-btn svg { fill: #fff; }
+
+  /* Section inner */
+  .section-inner { padding: 6rem 4rem; }
+  #work .section-inner { padding: 5rem 4rem 3rem; }
+
+  /* About — editorial */
+  .about-eyebrow { color: #555; }
+  .about-name { color: #111; }
+  .about-name .sub { color: #444; }
+  .about-bio { color: #333; }
+  .about-bio em { color: #111; }
+  .about-stats { border-top-color: #e8e8e8; }
+  .stat-number { color: #111; font-size: 2.2rem; }
+  .stat-label { color: #666; }
+
+  /* Awards */
+  .awards-strip { border-top-color: #e8e8e8; }
+  .awards-eyebrow { color: #555; }
+  .award-film-edge { background: #f0f0f0; border-color: #e0e0e0; }
+  .sprocket { border-color: #ccc; background: #fff; }
+  .award-photo { border-color: #e8e8e8; }
+  .award-prize { color: #111; }
+  .award-info-name { color: #333; }
+  .award-info-project { color: #555; }
+  .award-link { color: #555; opacity: 1; }
+
+  /* Portrait */
+  .portrait-frame { border-color: #e8e8e8; }
+  .corner { border-color: #ccc !important; }
+  .portrait-caption { color: #777; }
+  .portrait-single { border-color: #e8e8e8; max-width: 100%; }
+
+  .portrait-caption em { color: #555; }
+
+  /* Education */
+  .edu-title { color: #333; }
+  .edu-item { border-bottom-color: #ddd; }
+  .edu-item:first-child { border-top-color: #ddd; }
+  .edu-year { color: #555; font-size: 0.75rem; }
+  .edu-degree { color: #111; font-size: 1rem; font-weight: 500; }
+  .edu-school { color: #333; font-style: italic; }
+  .edu-location { color: #555; letter-spacing: 0.12em; }
+
+  /* Services */
+  .services-grid { background: #e8e8e8; gap: 2px; }
+  .service-card { background: #fff; }
+  .service-card:hover { background: #f8f8f8; }
+  .service-card::after { background: #111; }
+  .service-icon { opacity: 0.5; filter: none; }
+  .service-name { color: #111; font-size: 1.1rem; }
+  .service-desc { color: #444; }
+
+  /* Contact */
+  .contact-info-label { color: #555; }
+  .contact-info-value { color: #111; font-weight: 500; }
+  .contact-link { border-bottom-color: #e8e8e8; }
+  .contact-link:hover { background: #f5f5f5; }
+  .contact-link-label { color: #111; font-size: 1rem; }
+  .contact-link-icon { color: #555; }
+  .contact-link-arrow { color: #999; }
+  .form-group label { color: #333; font-weight: 500; }
+  .form-group input,
+  .form-group textarea,
+  .form-group select {
+    background: #fff;
+    border-color: #ddd;
+    color: #111;
+  }
+  .form-group input:focus,
+  .form-group textarea:focus,
+  .form-group select:focus { border-color: #111; }
+  .form-note { color: #666; }
+
+  /* Footer */
+  footer { border-top: 1px solid #e8e8e8; }
+  .footer-logo { color: #111; }
+  .footer-logo span { color: #111; }
+  .footer-copy { color: #666; }
+  .footer-links a { color: #555; }
+
+  /* Catalog overlay */
+  .catalog-overlay { background: #fff; }
+  .catalog-topbar { background: rgba(255,255,255,0.96); border-bottom-color: #e8e8e8; }
+  .catalog-logo { color: #111; }
+  .catalog-logo span { color: #111; }
+  .catalog-close-btn { color: #555; border-color: #ddd; }
+  .catalog-close-btn:hover { border-color: #111; color: #111; }
+  .catalog-headline { color: #111; }
+  .catalog-count { color: #666; }
+  .filter-pill { color: #555; border-color: #ccc; }
+  .filter-pill:hover { color: #111; border-color: #111; }
+  .filter-pill.active { background: #111; border-color: #111; color: #fff; }
+  .catalog-grid { background: #e8e8e8; gap: 2px; }
+  .catalog-card { background: #fff; }
+
+  /* Mobile portrait */
+  .mobile-portrait-img { border-color: #e8e8e8; }
+
+  /* Lightbox */
+  .photo-lightbox { background: rgba(255,255,255,0.97); }
+  .lightbox-close { color: #333; border-color: #bbb; }
+  .lightbox-close:hover { color: #111; border-color: #111; }
+  .lightbox-nav { color: #333; border-color: #bbb; }
+  .lightbox-nav:hover { color: #111; border-color: #111; }
+  .lightbox-counter { color: #666; }
+  .lightbox-scan { display: none; }
+
+  @media (max-width: 900px) {
+    #hero { padding: 0 1.5rem 4rem; min-height: 70vh; }
+    .section-inner { padding: 4rem 1.5rem; }
+    #work .section-inner { padding: 3rem 1.5rem 2rem; }
+  }
+
+  /* Services accordion */
+  .services-grid { display: flex; flex-direction: column; gap: 0; background: none; }
+  .service-card {
+    border-bottom: 1px solid #e8e8e8;
+    cursor: pointer;
+    background: #fff !important;
+    padding: 0 !important;
+    overflow: hidden;
+  }
+  .service-card:first-child { border-top: 1px solid #e8e8e8; }
+  .service-card-header {
+    display: flex;
+    align-items: center;
+    gap: 1.8rem;
+    padding: 1.6rem 1.5rem;
+    transition: opacity 0.2s;
+  }
+  .service-card:hover .service-card-header { opacity: 0.75; }
+  .service-header-left { display: flex; align-items: center; gap: 1.8rem; flex: 1; min-width: 0; }
+  .service-num {
+    font-family: var(--font-mono);
+    font-size: 0.5rem;
+    color: #bbb;
+    letter-spacing: 0.15em;
+    flex-shrink: 0;
+    width: 20px;
+  }
+  .service-icon { width: 22px; height: 22px; opacity: 0.3; flex-shrink: 0; }
+  .service-icon svg { width: 22px; height: 22px; stroke: #111; fill: none; stroke-width: 1.5; }
+  .service-name {
+    font-family: var(--font-display);
+    font-size: clamp(1.4rem, 3vw, 2rem);
+    color: #111;
+    letter-spacing: 0.04em;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+  }
+  .service-toggle {
+    font-size: 1.2rem;
+    color: #bbb;
+    font-weight: 300;
+    transition: transform 0.35s, color 0.2s;
+    line-height: 1;
+    flex-shrink: 0;
+    margin-left: auto;
+    width: 28px;
+    text-align: center;
+  }
+  .service-card.open .service-toggle { transform: rotate(45deg); color: #111; }
+
+  /* Accordion details panel */
+  .service-details {
+    max-height: 0;
+    overflow: hidden;
+    transition: max-height 0.45s cubic-bezier(0.16,1,0.3,1);
+  }
+  .service-card.open .service-details { max-height: 900px; }
+  .service-details-inner {
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr;
+    gap: 2.5rem;
+    padding: 2rem 1.5rem 3rem;
+    border-top: 1px solid #f0f0f0;
+  }
+  .service-block-title {
+    font-family: var(--font-mono);
+    font-size: 0.52rem;
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+    color: #999;
+    margin-bottom: 1rem;
+  }
+  .service-includes-list { list-style: none; }
+  .service-includes-list li {
+    font-size: 0.9rem;
+    color: #333;
+    padding: 0.35rem 0;
+    border-bottom: 1px solid #f5f5f5;
+    display: flex;
+    align-items: center;
+    gap: 0.6rem;
+  }
+  .service-includes-list li::before { content: '—'; color: #ccc; font-size: 0.8rem; flex-shrink: 0; }
+  .service-addon {
+    font-size: 0.8rem;
+    color: #888;
+    margin-top: 1rem;
+    font-style: italic;
+  }
+  .service-steps { list-style: none; counter-reset: steps; }
+  .service-steps li {
+    font-size: 0.85rem;
+    color: #333;
+    padding: 0.4rem 0;
+    border-bottom: 1px solid #f5f5f5;
+    display: flex;
+    align-items: flex-start;
+    gap: 0.8rem;
+    counter-increment: steps;
+  }
+  .service-steps li::before {
+    content: counter(steps, decimal-leading-zero);
+    font-family: var(--font-mono);
+    font-size: 0.5rem;
+    color: #bbb;
+    padding-top: 3px;
+    flex-shrink: 0;
+  }
+  .service-right-col { display: flex; flex-direction: column; gap: 2rem; }
+  .service-timeline-box {
+    background: #f7f7f7;
+    padding: 1.2rem 1.5rem;
+    border-left: 2px solid #111;
+  }
+  .service-timeline-label { font-family: var(--font-mono); font-size: 0.5rem; letter-spacing: 0.15em; text-transform: uppercase; color: #999; margin-bottom: 0.3rem; }
+  .service-timeline-value { font-family: var(--font-display); font-size: 1.8rem; color: #111; line-height: 1; }
+  .service-cta-box { margin-top: auto; }
+  .service-cta-btn {
+    display: inline-block;
+    background: #111;
+    color: #fff;
+    font-family: var(--font-mono);
+    font-size: 0.55rem;
+    letter-spacing: 0.18em;
+    text-transform: uppercase;
+    padding: 0.9rem 1.6rem;
+    text-decoration: none;
+    transition: background 0.2s;
+  }
+  .service-cta-btn:hover { background: #444; }
+  .service-investment {
+    font-size: 0.8rem;
+    color: #888;
+    margin-top: 0.8rem;
+    line-height: 1.5;
+  }
+
+  @media (max-width: 900px) {
+    .service-card-header { gap: 1rem; padding: 1.4rem 1.5rem; }
+    .service-header-left { gap: 1rem; }
+    .service-details-inner { grid-template-columns: 1fr; gap: 1.5rem; padding: 1.5rem 1.5rem 2rem; }
+    .service-name { font-size: 1.3rem; }
+  }
+
+  /* Photo preview in service card */
+  .service-photo-preview {
+    display: flex;
+    gap: 4px;
+    overflow-x: auto;
+    scrollbar-width: none;
+    margin-bottom: 1rem;
+  }
+  .service-photo-preview::-webkit-scrollbar { display: none; }
+  .service-photo-preview img {
+    width: 80px;
+    height: 80px;
+    object-fit: cover;
+    flex-shrink: 0;
+    filter: grayscale(0.2);
+    transition: filter 0.3s;
+  }
+  .service-photo-preview img:hover { filter: grayscale(0); }
+  .photo-preview-placeholder {
+    background: #f5f5f5;
+    border: 1px dashed #ccc;
+    padding: 1rem;
+    font-size: 0.7rem;
+    color: #999;
+    font-family: var(--font-mono);
+    border-radius: 2px;
+    width: 100%;
+  }
+
+  /* ===== PHOTO GALLERY OVERLAY ===== */
+  .gallery-overlay {
+    position: fixed;
+    inset: 0;
+    z-index: 1100;
+    background: #fff;
+    transform: translateY(100%);
+    transition: transform 0.5s cubic-bezier(0.16,1,0.3,1);
+    overflow-y: auto;
+    display: flex;
+    flex-direction: column;
+  }
+  .gallery-overlay.open { transform: translateY(0); }
+
+  .gallery-topbar {
+    position: sticky;
+    top: 0;
+    z-index: 10;
+    background: rgba(255,255,255,0.95);
+    backdrop-filter: blur(10px);
+    border-bottom: 1px solid #e8e8e8;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 1.2rem 3rem;
+    flex-shrink: 0;
+  }
+  .gallery-title-block {}
+  .gallery-label {
+    font-family: var(--font-mono);
+    font-size: 0.5rem;
+    letter-spacing: 0.25em;
+    text-transform: uppercase;
+    color: #999;
+    margin-bottom: 0.2rem;
+  }
+  .gallery-title {
+    font-family: var(--font-display);
+    font-size: 1.5rem;
+    color: #111;
+    letter-spacing: 0.04em;
+    line-height: 1;
+  }
+  .gallery-close-btn {
+    background: none;
+    border: 0.5px solid #ccc;
+    color: #555;
+    font-family: var(--font-mono);
+    font-size: 0.55rem;
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+    padding: 0.6rem 1.2rem;
+    cursor: pointer;
+    transition: border-color 0.2s, color 0.2s;
+  }
+  .gallery-close-btn:hover { border-color: #111; color: #111; }
+
+  .gallery-body { padding: 2.5rem 3rem; flex: 1; }
+  .gallery-subtitle {
+    font-family: var(--font-mono);
+    font-size: 0.52rem;
+    letter-spacing: 0.18em;
+    text-transform: uppercase;
+    color: #888;
+    margin-bottom: 2rem;
+  }
+
+  .gallery-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 4px;
+  }
+  .gallery-item {
+    position: relative;
+    overflow: hidden;
+    cursor: zoom-in;
+    background: #f5f5f5;
+    aspect-ratio: 3/4;
+  }
+  .gallery-item.landscape { aspect-ratio: 4/3; }
+  .gallery-item img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    object-position: center top;
+    display: block;
+    transition: transform 0.5s ease, filter 0.3s;
+    filter: grayscale(0.1);
+  }
+  .gallery-item:hover img { transform: scale(1.04); filter: grayscale(0); }
+  .gallery-item-overlay {
+    position: absolute;
+    inset: 0;
+    background: rgba(0,0,0,0);
+    transition: background 0.3s;
+    display: flex;
+    align-items: flex-end;
+    padding: 1rem;
+  }
+  .gallery-item:hover .gallery-item-overlay { background: rgba(0,0,0,0.15); }
+  .gallery-item-num {
+    font-family: var(--font-mono);
+    font-size: 0.45rem;
+    letter-spacing: 0.15em;
+    color: rgba(255,255,255,0);
+    transition: color 0.3s;
+  }
+  .gallery-item:hover .gallery-item-num { color: rgba(255,255,255,0.8); }
+
+  /* Full-size view inside gallery */
+  .gallery-fullscreen {
+    position: fixed;
+    inset: 0;
+    z-index: 1200;
+    background: rgba(0,0,0,0.95);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    opacity: 0;
+    pointer-events: none;
+    transition: opacity 0.3s;
+  }
+  .gallery-fullscreen.open { opacity: 1; pointer-events: all; }
+  .gallery-fullscreen img {
+    max-width: 92vw;
+    max-height: 92vh;
+    object-fit: contain;
+    display: block;
+    transform: scale(0.97);
+    transition: transform 0.35s cubic-bezier(0.16,1,0.3,1);
+  }
+  .gallery-fullscreen.open img { transform: scale(1); }
+  .gallery-fs-close {
+    position: fixed;
+    top: 1.5rem; right: 1.8rem;
+    background: none;
+    border: 0.5px solid rgba(255,255,255,0.3);
+    color: rgba(255,255,255,0.7);
+    font-family: var(--font-mono);
+    font-size: 0.55rem;
+    letter-spacing: 0.2em;
+    padding: 0.5rem 1rem;
+    cursor: pointer;
+    transition: border-color 0.2s, color 0.2s;
+  }
+  .gallery-fs-close:hover { border-color: #fff; color: #fff; }
+  .gallery-fs-nav {
+    position: fixed;
+    top: 50%; transform: translateY(-50%);
+    background: none;
+    border: 0.5px solid rgba(255,255,255,0.25);
+    color: rgba(255,255,255,0.6);
+    width: 44px; height: 44px;
+    display: flex; align-items: center; justify-content: center;
+    cursor: pointer;
+    transition: border-color 0.2s, color 0.2s;
+  }
+  .gallery-fs-nav:hover { border-color: #fff; color: #fff; }
+  .gallery-fs-prev { left: 1.5rem; }
+  .gallery-fs-next { right: 1.5rem; }
+  .gallery-fs-nav svg { width: 16px; height: 16px; }
+  .gallery-fs-counter {
+    position: fixed;
+    bottom: 1.5rem; left: 50%; transform: translateX(-50%);
+    font-family: var(--font-mono);
+    font-size: 0.5rem;
+    letter-spacing: 0.2em;
+    color: rgba(255,255,255,0.4);
+  }
+
+  @media (max-width: 900px) {
+    .gallery-topbar { padding: 1rem 1.5rem; }
+    .gallery-body { padding: 1.5rem; }
+    .gallery-grid { grid-template-columns: repeat(2, 1fr); gap: 3px; }
+  }
+
+  /* Single portrait — larger */
+  .portrait-single {
+    position: relative;
+    border: var(--border);
+    padding: 10px;
+    margin-bottom: 2.5rem;
+    max-width: 340px;
+  }
+</style>
+</head>
+<body>
+
+<!-- CURSOR -->
+<div class="cursor" id="cursor"></div>
+<div class="cursor-ring" id="cursorRing"></div>
+
+<!-- NAV -->
+<nav id="navbar">
+  <a href="#" class="nav-logo">TOCALI <span>FILM</span></a>
+  <ul class="nav-links" id="navLinks">
+    <li><a href="#work" data-i18n="nav-work">Trabajo</a></li>
+    <li><a href="#about" data-i18n="nav-about">Acerca</a></li>
+    <li><a href="#services" data-i18n="nav-services">Servicios</a></li>
+    <li><a href="#contact" class="nav-contact" data-i18n="nav-contact">Contacto</a></li>
+  </ul>
+  <button class="lang-toggle" id="langToggle" aria-label="Cambiar idioma">🇲🇽 ES</button>
+  <button class="hamburger" id="hamburger" aria-label="Menu">
+    <span></span><span></span><span></span>
+  </button>
+</nav>
+
+<!-- HERO -->
+<section id="hero">
+  <div class="hero-bg">
+    <!-- 🎬 EDIT: replace your-reel.mp4 with your actual video filename -->
+    <video autoplay muted loop playsinline>
+      <source src="hero-reel.mp4" type="video/mp4">
+    </video>
+  </div>
+  <div class="hero-grain"></div>
+  <div class="hero-light"></div>
+  <div class="hero-vline"></div>
+  <div class="hero-hline"></div>
+
+  <!-- Filmstrip -->
+  <div class="hero-filmstrip" aria-hidden="true">
+    <div class="film-hole"></div><div class="film-hole"></div>
+    <div class="film-hole"></div><div class="film-hole"></div>
+    <div class="film-hole"></div><div class="film-hole"></div>
+    <div class="film-hole"></div><div class="film-hole"></div>
+    <div class="film-hole"></div><div class="film-hole"></div>
+    <div class="film-hole"></div><div class="film-hole"></div>
+    <div class="film-hole"></div><div class="film-hole"></div>
+  </div>
+
+  <div class="hero-content">
+    <p class="hero-eyebrow">Baja California &nbsp;·&nbsp; Tokyo &nbsp;·&nbsp; Film</p>
+    <h1 class="hero-h1" data-i18n-html="hero-h1">
+      Visual<br>
+      <span class="italic-line">Narrativa</span>
+    </h1>
+    <p class="hero-sub" data-i18n-html="hero-sub">
+      Comercial · Marca · Videoclip · Narrativa<br>
+      Andrés Madrueño Ortiz — Director Freelance
+    </p>
+    <div class="hero-actions">
+      <a href="#work" class="btn-primary" data-i18n="hero-btn-primary">Ver trabajo &nbsp;→</a>
+      <a href="#contact" class="btn-ghost" data-i18n="hero-btn-ghost">Iniciar proyecto</a>
+
+    </div>
+  </div>
+
+  <div class="hero-meta" aria-hidden="true">
+    <div class="hero-meta-item"><span data-i18n="hero-meta-basedin">Ubicado en</span><span>Baja California, MX</span></div>
+    <div class="hero-meta-item"><span data-i18n="hero-meta-formedin">Formado en</span><span>Tokyo, JP</span></div>
+    <div class="hero-meta-item"><span data-i18n="hero-meta-available">Disponible</span><span>Worldwide</span></div>
+  </div>
+
+
+</section>
+
+<!-- TICKER -->
+<div class="ticker-bar" aria-hidden="true">
+  <div class="ticker-track" id="ticker">
+    <div class="ticker-item">Commercial</div>
+    <div class="ticker-item">Brand Video</div>
+    <div class="ticker-item">Music Video</div>
+    <div class="ticker-item">Narrative Film</div>
+    <div class="ticker-item">Photography</div>
+    <div class="ticker-item">Musashino Art University</div>
+    <div class="ticker-item">Baja California</div>
+    <div class="ticker-item">Tokyo</div>
+    <div class="ticker-item">TOKABI Collective</div>
+    <div class="ticker-item">Commercial</div>
+    <div class="ticker-item">Brand Video</div>
+    <div class="ticker-item">Music Video</div>
+    <div class="ticker-item">Narrative Film</div>
+    <div class="ticker-item">Photography</div>
+    <div class="ticker-item">Musashino Art University</div>
+    <div class="ticker-item">Baja California</div>
+    <div class="ticker-item">Tokyo</div>
+    <div class="ticker-item">TOKABI Collective</div>
+  </div>
+</div>
+
+
+<!-- WORK -->
+<section id="work">
+  <div class="section-inner">
+    <div class="section-header reveal">
+      <div>
+        <div class="section-eyebrow" data-i18n="work-eyebrow">Portafolio</div>
+        <h2 class="section-title" data-i18n="work-title">Trabajos Seleccionados</h2>
+      </div>
+      <a href="javascript:void(0)" onclick="openCatalog('all')" class="link-more" data-i18n="work-more">Todos los proyectos →</a>
+    </div>
+
+    <div class="work-grid">
+
+      <!-- ============================================================
+           ✏️ TARJETA 1 — PROYECTO DESTACADO (la más grande)
+           1. Cambia el número de Vimeo: src="...video/TU_ID_AQUI?..."
+           2. Cambia la imagen de fondo: url('tu-thumbnail-1.jpg')
+           3. Cambia la categoría, título, año y cliente
+           ============================================================ -->
+      <!-- CARD 1: ノイズの住民 — Largometraje MFA -->
+      <div class="work-card featured reveal">
+        <div class="card-thumb">
+          <div class="card-bg bg-1" style="background-image:url('THUMBNAILS/thumb-pop&coke.png');background-size:cover;background-position:center;"></div>
+          <div class="card-scan"></div>
+          <div class="card-vignette"></div>
+          <iframe
+            src="https://www.youtube.com/embed/2Z1lR84XUJA?enablejsapi=1"
+            frameborder="0"
+            allow="autoplay; fullscreen; picture-in-picture"
+            allowfullscreen
+            style="position:absolute; inset:0; width:100%; height:100%; z-index:3; opacity:0; pointer-events:none; transition: opacity 0.4s;"
+            id="vimeo-1"
+            data-provider="youtube"
+          ></iframe>
+          <div class="play-btn" aria-label="Play video" onclick="playVimeo('vimeo-1','overlay-1')">
+            <svg viewBox="0 0 20 20"><polygon points="5,3 17,10 5,17"/></svg>
+          </div>
+          <div class="card-overlay" id="overlay-1">
+            <div class="card-cat">Comercial · PV</div>
+            <div class="card-title" data-i18n="p-popcoke">¡POP&amp;COKE!</div>
+            <div class="card-year">2023 — TOHO Cinemas Student Film Festival · Selección Oficial</div>
+          </div>
+        </div>
+      </div>
+
+      <!-- ============================================================
+           ✏️ TARJETA 2
+           ============================================================ -->
+      <div class="work-card reveal reveal-delay-1" onclick="openGallery('saka')">
+        <div class="card-thumb">
+          <div class="card-bg bg-2" style="background-image:url('THUMBNAILS/thumb-modelo2.png');background-size:cover;background-position:center 30%;"></div>
+          <div class="card-scan"></div>
+          <div class="card-vignette"></div>
+          <div class="card-overlay" id="overlay-2">
+            <div class="card-cat">Fotografía Editorial · Tokio</div>
+            <div class="card-title">纛Z子 — SAKA-SAMA</div>
+            <div class="card-year">2023 · TRASH-UP!! RECORDS</div>
+          </div>
+        </div>
+      </div>
+
+      <!-- ============================================================
+           ✏️ TARJETA 3
+           ============================================================ -->
+      <div class="work-card reveal reveal-delay-2">
+        <div class="card-thumb">
+          <div class="card-bg bg-3" style="background-image:url('THUMBNAILS/thumb-atshibuya.png');background-size:cover;background-position:center;"></div>
+          <div class="card-scan"></div>
+          <div class="card-vignette"></div>
+          <iframe
+            src="https://www.youtube.com/embed/GQ_2qXasZB8?enablejsapi=1"
+            frameborder="0"
+            allow="autoplay; fullscreen; picture-in-picture"
+            allowfullscreen
+            style="position:absolute; inset:0; width:100%; height:100%; z-index:3; opacity:0; pointer-events:none; transition: opacity 0.4s;"
+            id="vimeo-3"
+            data-provider="youtube"
+          ></iframe>
+          <div class="play-btn" aria-label="Play video" onclick="playVimeo('vimeo-3','overlay-3')">
+            <svg viewBox="0 0 20 20"><polygon points="5,3 17,10 5,17"/></svg>
+          </div>
+          <div class="card-overlay" id="overlay-3">
+            <div class="card-cat">Cine Narrativo · Cortometraje</div>
+            <div class="card-title" data-i18n="p-shibuya">En Shibuya</div>
+            <div class="card-year">2022 — Premio ISCA · Mejor Video Nacional</div>
+          </div>
+        </div>
+      </div>
+
+    </div>
+
+    <!-- Second row -->
+    <div class="work-grid" style="margin-top:1.5px;">
+
+      <!-- ============================================================
+           ✏️ TARJETA 4
+           ============================================================ -->
+      <div class="work-card featured reveal">
+        <div class="card-thumb">
+          <div class="card-bg bg-4" style="background-image:url('THUMBNAILS/thumb-nostalgia.png');background-size:cover;background-position:center;"></div>
+          <div class="card-scan"></div>
+          <div class="card-vignette"></div>
+          <iframe
+            src="https://www.youtube.com/embed/qJIqk42ko9I?enablejsapi=1"
+            frameborder="0"
+            allow="autoplay; fullscreen; picture-in-picture"
+            allowfullscreen
+            style="position:absolute; inset:0; width:100%; height:100%; z-index:3; opacity:0; pointer-events:none; transition: opacity 0.4s;"
+            id="vimeo-4"
+            data-provider="youtube"
+          ></iframe>
+          <div class="play-btn" aria-label="Play video" onclick="playVimeo('vimeo-4','overlay-4')">
+            <svg viewBox="0 0 20 20"><polygon points="5,3 17,10 5,17"/></svg>
+          </div>
+          <div class="card-overlay" id="overlay-4">
+            <div class="card-cat">Videoclip · Dirección</div>
+            <div class="card-title" data-i18n="p-nostalgia">NOSTALGIA</div>
+            <div class="card-year">2023 — Tomoka Nagao · Premio Micro Cinema Contest</div>
+          </div>
+        </div>
+      </div>
+
+      <!-- ============================================================
+           ✏️ TARJETA 5
+           ============================================================ -->
+      <div class="work-card featured reveal reveal-delay-1">
+        <div class="card-thumb">
+          <div class="card-bg bg-2" style="background-image:url('THUMBNAILS/thumb-noise.png');background-size:cover;background-position:center;"></div>
+          <div class="card-scan"></div>
+          <div class="card-vignette"></div>
+          <iframe
+            src="https://www.youtube.com/embed/YxIfHuqC53I?enablejsapi=1"
+            frameborder="0"
+            allow="autoplay; fullscreen; picture-in-picture"
+            allowfullscreen
+            style="position:absolute; inset:0; width:100%; height:100%; z-index:3; opacity:0; pointer-events:none; transition: opacity 0.4s;"
+            id="vimeo-5"
+            data-provider="youtube"
+          ></iframe>
+          <div class="play-btn" aria-label="View project" onclick="playVimeo('vimeo-5','overlay-5')">
+            <svg viewBox="0 0 20 20"><polygon points="5,3 17,10 5,17"/></svg>
+          </div>
+          <div class="card-overlay" id="overlay-5">
+            <div class="card-cat">Cine Narrativo · Largometraje</div>
+            <div class="card-title" data-i18n="p-noise">Los Habitantes del Ruido</div>
+            <div class="card-year">2024 — Musashino Art University · MFA</div>
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<!-- ABOUT -->
+<section id="about">
+  <div class="section-inner">
+    <div class="about-grid">
+      <div class="about-left">
+        <div class="about-eyebrow reveal" data-i18n="about-eyebrow">Director & Cinematógrafo</div>
+        <div class="about-name-group reveal">
+          <h2 class="about-name">
+            Andrés<br>Madrueño<br>Ortiz
+            <span class="sub" data-i18n="about-name-sub">
+              Precisión de Tokio ･ Alma de Baja
+            </span>
+          </h2>
+          <div class="about-coyote" aria-hidden="true">
+            <img src="TOCALI_JUST_COYOTE.png" alt="">
+          </div>
+        </div>
+        <div class="about-bio reveal">
+          <p data-i18n-html="bio-p1">Director y cinematógrafo freelance trabajando en la intersección de dos mundos visuales. Formado en la meticulosa tradición artesanal de la <em>Universidad de Arte Musashino en Tokio</em>, y arraigado en la energía cruda y solar de <em>Baja California</em>.</p>
+          <p data-i18n-html="bio-p2">Especializado en trabajo comercial, de marca y videoclips — con una sensibilidad narrativa que le da a cada fotograma una razón de existir. Miembro del colectivo independiente de cine <em>TOKABI</em> en Japón.</p>
+        </div>
+
+        <!-- Retrato solo visible en móvil — img estático sin absolute positioning -->
+        <div class="mobile-portrait-wrap">
+          <img src="ANDRES-BW2.png" alt="Andrés Madrueño Ortiz" class="mobile-portrait-img">
+          <p class="mobile-portrait-caption">Retrato</p>
+        </div>
+
+        <div class="about-stats reveal">
+          <div>
+            <div class="stat-number">6+</div>
+            <div class="stat-label" data-i18n="stat-years">Años activos</div>
+          </div>
+          <div>
+            <div class="stat-number">MX·JP</div>
+            <div class="stat-label" data-i18n="stat-formation">Formación</div>
+          </div>
+          <div>
+            <div class="stat-number" style="font-family: Georgia, serif; font-size: 2.8rem;">∞</div>
+            <div class="stat-label" data-i18n="stat-borders">Sin fronteras</div>
+          </div>
+        </div>
+
+        <!-- ★ AWARDS FILMSTRIP -->
+        <div class="awards-strip reveal">
+          <p class="awards-eyebrow" data-i18n="awards-eyebrow">Reconocimientos</p>
+
+          <div class="awards-filmstrip" id="awardsFilmstrip">
+
+            <!-- FOTO 1 -->
+            <div class="award-frame">
+              <div class="award-film-edge">
+                <div class="sprocket"></div><div class="sprocket"></div>
+                <div class="sprocket"></div><div class="sprocket"></div>
+                <div class="sprocket"></div><div class="sprocket"></div>
+              </div>
+              <div class="award-photo" onclick="openLightbox(0)">
+                <img src="THUMBNAILS/thumb-ISCA1.jpg" alt="ISCA Grand Prize 2022">
+                <div class="award-photo-scan"></div>
+              </div>
+              <div class="award-film-edge">
+                <div class="sprocket"></div><div class="sprocket"></div>
+                <div class="sprocket"></div><div class="sprocket"></div>
+                <div class="sprocket"></div><div class="sprocket"></div>
+              </div>
+            </div>
+
+            <!-- FOTO 2 -->
+            <div class="award-frame">
+              <div class="award-film-edge">
+                <div class="sprocket"></div><div class="sprocket"></div>
+                <div class="sprocket"></div><div class="sprocket"></div>
+                <div class="sprocket"></div><div class="sprocket"></div>
+              </div>
+              <div class="award-photo" onclick="openLightbox(1)">
+                <img src="THUMBNAILS/thumb-ISCA2.jpg" alt="ISCA Grand Prize 2022">
+                <div class="award-photo-scan"></div>
+              </div>
+              <div class="award-film-edge">
+                <div class="sprocket"></div><div class="sprocket"></div>
+                <div class="sprocket"></div><div class="sprocket"></div>
+                <div class="sprocket"></div><div class="sprocket"></div>
+              </div>
+            </div>
+
+            <!-- FOTO 3 -->
+            <div class="award-frame">
+              <div class="award-film-edge">
+                <div class="sprocket"></div><div class="sprocket"></div>
+                <div class="sprocket"></div><div class="sprocket"></div>
+                <div class="sprocket"></div><div class="sprocket"></div>
+              </div>
+              <div class="award-photo" onclick="openLightbox(2)">
+                <img src="THUMBNAILS/thumb-ISCA3.jpeg" alt="ISCA Grand Prize 2022">
+                <div class="award-photo-scan"></div>
+              </div>
+              <div class="award-film-edge">
+                <div class="sprocket"></div><div class="sprocket"></div>
+                <div class="sprocket"></div><div class="sprocket"></div>
+                <div class="sprocket"></div><div class="sprocket"></div>
+              </div>
+            </div>
+
+
+            <!-- FOTO PFF 1 -->
+            <div class="award-frame">
+              <div class="award-film-edge">
+                <div class="sprocket"></div><div class="sprocket"></div>
+                <div class="sprocket"></div><div class="sprocket"></div>
+                <div class="sprocket"></div><div class="sprocket"></div>
+              </div>
+              <div class="award-photo" onclick="openLightbox(3)">
+                <img src="THUMBNAILS/thumb-PFF1.jpg" alt="PFF Nomination 2022">
+                <div class="award-photo-scan"></div>
+              </div>
+              <div class="award-film-edge">
+                <div class="sprocket"></div><div class="sprocket"></div>
+                <div class="sprocket"></div><div class="sprocket"></div>
+                <div class="sprocket"></div><div class="sprocket"></div>
+              </div>
+            </div>
+
+            <!-- FOTO PFF 2 -->
+            <div class="award-frame">
+              <div class="award-film-edge">
+                <div class="sprocket"></div><div class="sprocket"></div>
+                <div class="sprocket"></div><div class="sprocket"></div>
+                <div class="sprocket"></div><div class="sprocket"></div>
+              </div>
+              <div class="award-photo" onclick="openLightbox(4)">
+                <img src="THUMBNAILS/thumb-PFF2.jpg" alt="PFF Nomination 2022">
+                <div class="award-photo-scan"></div>
+              </div>
+              <div class="award-film-edge">
+                <div class="sprocket"></div><div class="sprocket"></div>
+                <div class="sprocket"></div><div class="sprocket"></div>
+                <div class="sprocket"></div><div class="sprocket"></div>
+              </div>
+            </div>
+
+            <!-- FOTO PFF 3 -->
+            <div class="award-frame">
+              <div class="award-film-edge">
+                <div class="sprocket"></div><div class="sprocket"></div>
+                <div class="sprocket"></div><div class="sprocket"></div>
+                <div class="sprocket"></div><div class="sprocket"></div>
+              </div>
+              <div class="award-photo" onclick="openLightbox(5)">
+                <img src="THUMBNAILS/thumb-PFF3.jpg" alt="PFF Nomination 2022">
+                <div class="award-photo-scan"></div>
+              </div>
+              <div class="award-film-edge">
+                <div class="sprocket"></div><div class="sprocket"></div>
+                <div class="sprocket"></div><div class="sprocket"></div>
+                <div class="sprocket"></div><div class="sprocket"></div>
+              </div>
+            </div>
+
+          </div>
+
+          <!-- Shared award info -->
+          <div class="award-info">
+            <div style="display:flex; flex-direction:column; gap:1.2rem;">
+              <div>
+                <div class="award-prize" data-i18n="award-isca-prize">Grand Prize</div>
+                <div class="award-info-name" data-i18n="award-isca-name">ISCA International Students Creative Award 2022</div>
+                <div class="award-info-project">渋谷にて &nbsp;·&nbsp; <span data-i18n="award-isca-project">En Shibuya</span> &nbsp;·&nbsp; 2022</div>
+                <a href="https://kc-i.jp/activity/award/isca/2022/winner/" target="_blank" rel="noopener" class="award-link" data-i18n="award-isca-link">Ver galería oficial →</a>
+              </div>
+              <div style="border-top:1px solid rgba(17,17,17,0.1); padding-top:1rem;">
+                <div class="award-prize">Nominación PFF</div>
+                <div class="award-info-name">Pia Film Festival 2022</div>
+                <div class="award-info-project">ノイズの住民 &nbsp;·&nbsp; Los Habitantes del Ruido &nbsp;·&nbsp; 2022</div>
+                <a href="https://pff.jp" target="_blank" rel="noopener" class="award-link">Ver festival →</a>
+              </div>
+            </div>
+          </div>
+        </div>
+        <!-- ★ /AWARDS FILMSTRIP -->
+
+      </div>
+
+      <div class="about-right">
+        <div class="portrait-single reveal">
+            <div class="corner tl"></div>
+            <div class="corner tr"></div>
+            <div class="corner bl"></div>
+            <div class="corner br"></div>
+            <div class="portrait-inner">
+              <div class="portrait-scan"></div>
+              <div class="portrait-text" aria-hidden="true">
+                ANDRÉS<br>MADRUEÑO<br>ORTIZ<br>——<br>DIRECTOR<br>——<br>BAJA · TOKYO
+              </div><img src="ANDRES-BW2.png" alt="Andrés Madrueño Ortiz">
+            </div>
+            <p class="portrait-caption"><span data-i18n="portrait-1-caption">Retrato</span></p>
+        </div>
+
+        <p class="edu-title reveal" data-i18n="edu-title">Formación</p>
+        <ul class="edu-list reveal">
+          <li class="edu-item">
+            <span class="edu-year">2025</span>
+            <div class="edu-body">
+              <div class="edu-degree" data-i18n-html="edu-1-degree">Maestría — Artes e Imágenes<br><span style="font-weight:300;font-style:italic;font-size:0.9em;">(Cine y Arte en Medios)</span></div>
+              <div class="edu-school">Musashino Art University</div>
+              <div class="edu-location" data-i18n="edu-location-tokyo">Tokio, Japón</div>
+            </div>
+          </li>
+          <li class="edu-item">
+            <span class="edu-year">2023</span>
+            <div class="edu-body">
+              <div class="edu-degree" data-i18n="edu-2-degree">Estudiante de Investigación</div>
+              <div class="edu-school">Musashino Art University</div>
+              <div class="edu-location" data-i18n="edu-location-tokyo">Tokio, Japón</div>
+            </div>
+          </li>
+          <li class="edu-item">
+            <span class="edu-year">2022</span>
+            <div class="edu-body">
+              <div class="edu-degree" data-i18n="edu-3-degree">Lengua y Cultura Japonesa</div>
+              <div class="edu-school">Tokyo University of Foreign Studies</div>
+              <div class="edu-location" data-i18n="edu-location-tokyo">Tokio, Japón</div>
+            </div>
+          </li>
+          <li class="edu-item">
+            <span class="edu-year">2019</span>
+            <div class="edu-body">
+              <div class="edu-degree" data-i18n="edu-4-degree">Lic. en Comunicación Audiovisual</div>
+              <div class="edu-school">Universidad Autónoma de Baja California</div>
+              <div class="edu-location" data-i18n="edu-location-baja">Baja California, México</div>
+            </div>
+          </li>
+        </ul>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- SERVICES -->
+<section id="services">
+  <div class="section-inner">
+    <div class="section-header reveal">
+      <div>
+        <div class="section-eyebrow" data-i18n="services-eyebrow">Lo que hago</div>
+        <h2 class="section-title" data-i18n="services-title">Servicios</h2>
+      </div>
+    </div>
+    <div class="services-grid">
+
+      <!-- 01 COMERCIAL -->
+      <div class="service-card reveal" onclick="toggleService(this)">
+        <div class="service-card-header">
+          <div class="service-header-left">
+            <span class="service-num">01</span>
+            <div class="service-icon" aria-hidden="true"><svg viewBox="0 0 32 32"><rect x="4" y="8" width="24" height="16" rx="1"/><line x1="4" y1="12" x2="28" y2="12"/><line x1="10" y1="8" x2="10" y2="24"/><circle cx="16" cy="18" r="2.5"/></svg></div>
+            <div class="service-name" data-i18n="svc-1-name">Comercial</div>
+          </div>
+          <div class="service-toggle">+</div>
+        </div>
+        <div class="service-details">
+          <div class="service-details-inner">
+            <div>
+              <div class="service-block-title">Incluye</div>
+              <ul class="service-includes-list">
+                <li>Desarrollo de concepto</li>
+                <li>Guión y shotlist</li>
+                <li>Filmación + dron + color</li>
+                <li>Edición</li>
+                <li>Música licenciada</li>
+                <li>2 rondas de revisión</li>
+              </ul>
+              <p class="service-addon">Ropa, props y locaciones: gasto adicional aprobado por el cliente · Logo animado: add-on</p>
+            </div>
+            <div>
+              <div class="service-block-title">Proceso</div>
+              <ol class="service-steps">
+                <li>Reunión inicial</li>
+                <li>Propuesta creativa</li>
+                <li>Preproducción</li>
+                <li>Producción (rodaje)</li>
+                <li>Postproducción</li>
+                <li>Primer corte + revisión</li>
+                <li>Entrega final</li>
+              </ol>
+            </div>
+            <div class="service-right-col">
+              <div class="service-timeline-box">
+                <div class="service-timeline-label">Tiempo de producción</div>
+                <div class="service-timeline-value">1–2 SEM</div>
+              </div>
+              <div class="service-cta-box">
+                <a href="#contact" class="service-cta-btn">Solicitar cotización →</a>
+                <p class="service-investment">Cotización personalizada según alcance del proyecto.</p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- 02 VIDEO DE MARCA -->
+      <div class="service-card reveal reveal-delay-1" onclick="toggleService(this)">
+        <div class="service-card-header">
+          <div class="service-header-left">
+            <span class="service-num">02</span>
+            <div class="service-icon" aria-hidden="true"><svg viewBox="0 0 32 32"><circle cx="16" cy="16" r="10"/><line x1="16" y1="6" x2="16" y2="26"/><line x1="6" y1="16" x2="26" y2="16"/><path d="M7.5 10 Q16 13 24.5 10"/><path d="M7.5 22 Q16 19 24.5 22"/></svg></div>
+            <div class="service-name" data-i18n="svc-2-name">Video de Marca</div>
+          </div>
+          <div class="service-toggle">+</div>
+        </div>
+        <div class="service-details">
+          <div class="service-details-inner">
+            <div>
+              <div class="service-block-title">Incluye</div>
+              <ul class="service-includes-list">
+                <li>Concepto editorial</li>
+                <li>Guión y shotlist</li>
+                <li>Filmación + dron + color</li>
+                <li>Edición narrativa + entrevistas</li>
+                <li>Música licenciada</li>
+                <li>2 rondas de revisión</li>
+              </ul>
+              <p class="service-addon">Ropa, props y locaciones: gasto adicional aprobado por el cliente · Motion graphics: add-on</p>
+            </div>
+            <div>
+              <div class="service-block-title">Proceso</div>
+              <ol class="service-steps">
+                <li>Reunión inicial</li>
+                <li>Propuesta creativa</li>
+                <li>Preproducción</li>
+                <li>Producción (rodaje)</li>
+                <li>Postproducción</li>
+                <li>Primer corte + revisión</li>
+                <li>Entrega final</li>
+              </ol>
+            </div>
+            <div class="service-right-col">
+              <div class="service-timeline-box">
+                <div class="service-timeline-label">Tiempo de producción</div>
+                <div class="service-timeline-value">1–2 SEM</div>
+              </div>
+              <div class="service-cta-box">
+                <a href="#contact" class="service-cta-btn">Solicitar cotización →</a>
+                <p class="service-investment">Cotización personalizada según alcance del proyecto.</p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- 03 VIDEOCLIP -->
+      <div class="service-card reveal reveal-delay-2" onclick="toggleService(this)">
+        <div class="service-card-header">
+          <div class="service-header-left">
+            <span class="service-num">03</span>
+            <div class="service-icon" aria-hidden="true"><svg viewBox="0 0 32 32"><polygon points="8,4 26,16 8,28"/><line x1="4" y1="4" x2="4" y2="28"/></svg></div>
+            <div class="service-name" data-i18n="svc-3-name">Videoclip</div>
+          </div>
+          <div class="service-toggle">+</div>
+        </div>
+        <div class="service-details">
+          <div class="service-details-inner">
+            <div>
+              <div class="service-block-title">Incluye</div>
+              <ul class="service-includes-list">
+                <li>Concepto visual</li>
+                <li>Shotlist y dirección de arte</li>
+                <li>Filmación + dron + color</li>
+                <li>Edición al ritmo</li>
+                <li>Efectos visuales básicos</li>
+                <li>2 rondas de revisión</li>
+              </ul>
+              <p class="service-addon">Vestuario y locaciones: gasto adicional aprobado por el cliente · Making-of BTS: add-on</p>
+            </div>
+            <div>
+              <div class="service-block-title">Proceso</div>
+              <ol class="service-steps">
+                <li>Reunión inicial</li>
+                <li>Propuesta creativa</li>
+                <li>Preproducción</li>
+                <li>Producción (rodaje)</li>
+                <li>Postproducción</li>
+                <li>Primer corte + revisión</li>
+                <li>Entrega final</li>
+              </ol>
+            </div>
+            <div class="service-right-col">
+              <div class="service-timeline-box">
+                <div class="service-timeline-label">Tiempo de producción</div>
+                <div class="service-timeline-value">1–2 SEM</div>
+              </div>
+              <div class="service-cta-box">
+                <a href="#contact" class="service-cta-btn">Solicitar cotización →</a>
+                <p class="service-investment">Cotización personalizada según alcance del proyecto.</p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- 04 CINE NARRATIVO -->
+      <div class="service-card reveal reveal-delay-3" onclick="toggleService(this)">
+        <div class="service-card-header">
+          <div class="service-header-left">
+            <span class="service-num">04</span>
+            <div class="service-icon" aria-hidden="true"><svg viewBox="0 0 32 32"><rect x="3" y="7" width="26" height="18" rx="1"/><line x1="3" y1="11" x2="5" y2="11"/><line x1="3" y1="15" x2="5" y2="15"/><line x1="3" y1="19" x2="5" y2="19"/><line x1="27" y1="11" x2="29" y2="11"/><line x1="27" y1="15" x2="29" y2="15"/><line x1="27" y1="19" x2="29" y2="19"/></svg></div>
+            <div class="service-name" data-i18n="svc-4-name">Cine Narrativo</div>
+          </div>
+          <div class="service-toggle">+</div>
+        </div>
+        <div class="service-details">
+          <div class="service-details-inner">
+            <div>
+              <div class="service-block-title">Incluye</div>
+              <ul class="service-includes-list">
+                <li>Desarrollo de guión</li>
+                <li>Preproducción completa</li>
+                <li>Filmación + dron + color</li>
+                <li>Edición narrativa</li>
+                <li>Música + mezcla de sonido</li>
+                <li>2 rondas de revisión</li>
+              </ul>
+              <p class="service-addon">Locaciones, actores y utilería: gasto adicional aprobado por el cliente · Subtítulos / versiones festival: add-on</p>
+            </div>
+            <div>
+              <div class="service-block-title">Proceso</div>
+              <ol class="service-steps">
+                <li>Reunión inicial</li>
+                <li>Propuesta creativa</li>
+                <li>Preproducción</li>
+                <li>Producción (rodaje)</li>
+                <li>Postproducción</li>
+                <li>Primer corte + revisión</li>
+                <li>Entrega final</li>
+              </ol>
+            </div>
+            <div class="service-right-col">
+              <div class="service-timeline-box">
+                <div class="service-timeline-label">Tiempo de producción</div>
+                <div class="service-timeline-value">Variable</div>
+              </div>
+              <div class="service-cta-box">
+                <a href="#contact" class="service-cta-btn">Solicitar cotización →</a>
+                <p class="service-investment">Cotización personalizada según alcance del proyecto.</p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- 05 FOTOGRAFÍA -->
+      <div class="service-card reveal" onclick="toggleService(this)">
+        <div class="service-card-header">
+          <div class="service-header-left">
+            <span class="service-num">05</span>
+            <div class="service-icon" aria-hidden="true"><svg viewBox="0 0 32 32"><circle cx="16" cy="17" r="6"/><path d="M4 10h3l2-3h14l2 3h3a2 2 0 0 1 2 2v14a2 2 0 0 1-2 2H4a2 2 0 0 1-2-2V12a2 2 0 0 1 2-2z"/></svg></div>
+            <div class="service-name" data-i18n="svc-5-name">Fotografía Editorial</div>
+          </div>
+          <div class="service-toggle">+</div>
+        </div>
+        <div class="service-details">
+          <div class="service-details-inner">
+            <div>
+              <div class="service-block-title">Incluye</div>
+              <ul class="service-includes-list">
+                <li>Dirección creativa y concepto</li>
+                <li>Diseño de set e iluminación</li>
+                <li>Dirección de arte y styling</li>
+                <li>Sesión fotográfica</li>
+                <li>Selección de imágenes</li>
+                <li>Retoque + color grading</li>
+              </ul>
+              <p class="service-addon">Vestuario, props y locaciones: gasto adicional aprobado por el cliente · Modelos: add-on</p>
+            </div>
+            <div>
+              <div class="service-block-title">Proceso</div>
+              <ol class="service-steps">
+                <li>Reunión inicial + briefing</li>
+                <li>Concepto + moodboard</li>
+                <li>Preparación de set y styling</li>
+                <li>Sesión fotográfica</li>
+                <li>Selección de tomas</li>
+                <li>Retoque + primera entrega</li>
+                <li>Ajustes + entrega final</li>
+              </ol>
+            </div>
+            <div class="service-right-col">
+
+              <div class="service-timeline-box">
+                <div class="service-timeline-label">Tiempo de entrega</div>
+                <div class="service-timeline-value">3–5 DÍAS</div>
+              </div>
+              <div class="service-cta-box">
+                <a href="#contact" class="service-cta-btn">Solicitar cotización →</a>
+                <p class="service-investment">Cotización personalizada según alcance del proyecto.</p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<!-- CONTACT -->
+<section id="contact">
+  <div class="contact-inner">
+    <div class="contact-left">
+      <div class="contact-eyebrow reveal" data-i18n="contact-eyebrow">Creamos juntos</div>
+      <h2 class="contact-h reveal" data-i18n-html="contact-h">
+        Inicia un<br><em>proyecto</em>
+      </h2>
+      <p class="contact-p reveal" data-i18n="contact-p">
+        Basado en Baja California y disponible para proyectos en México, EE.UU., Japón y más allá.
+      </p>
+      <div class="contact-links reveal">
+        <a href="mailto:andres.madrueno@gmail.com" class="contact-link">
+          <span class="contact-link-icon">✉</span>
+          <span class="contact-link-label">andres.madrueno@gmail.com</span>
+          <span class="contact-link-arrow">→</span>
+        </a>
+        <a href="https://wa.me/526641887629" class="contact-link contact-link--wa" target="_blank" rel="noopener">
+          <span class="contact-link-icon">
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347z"/><path d="M12 0C5.373 0 0 5.373 0 12c0 2.126.558 4.121 1.528 5.849L.057 23.571a.75.75 0 0 0 .93.899l5.898-1.549A11.95 11.95 0 0 0 12 24c6.627 0 12-5.373 12-12S18.627 0 12 0zm0 22c-1.907 0-3.699-.498-5.254-1.367l-.376-.214-3.899 1.024 1.002-3.813-.232-.389A9.953 9.953 0 0 1 2 12C2 6.477 6.477 2 12 2s10 4.477 10 10-4.477 10-10 10z"/></svg>
+          </span>
+          <span class="contact-link-label">+52 664 188 7629</span>
+          <span class="contact-link-arrow">→</span>
+        </a>
+      </div>
+    </div>
+
+    <div class="contact-right reveal">
+      <form class="contact-form" name="contact" method="POST" data-netlify="true" netlify-honeypot="bot-field" onsubmit="handleSubmit(event)">
+        <input type="hidden" name="form-name" value="contact">
+        <p style="display:none"><input name="bot-field"></p>
+        <div class="form-row">
+          <div class="form-group">
+            <label for="cf-name" data-i18n="form-name-label">Nombre</label>
+            <input type="text" id="cf-name" name="name" placeholder="Tu nombre" autocomplete="name" data-i18n-placeholder="form-name-placeholder">
+          </div>
+          <div class="form-group">
+            <label for="cf-email" data-i18n="form-email-label">Correo</label>
+            <input type="email" id="cf-email" name="email" placeholder="your@email.com" autocomplete="email">
+          </div>
+        </div>
+        <div class="form-group">
+          <label for="cf-type" data-i18n="form-type-label">Tipo de proyecto</label>
+          <select id="cf-type" name="type">
+            <option value="" disabled selected data-i18n="form-type-default">Selecciona un servicio</option>
+            <option data-i18n="form-type-1">Comercial</option>
+            <option data-i18n="form-type-2">Video de Marca</option>
+            <option data-i18n="form-type-3">Videoclip</option>
+            <option data-i18n="form-type-4">Cine Narrativo</option>
+            <option data-i18n="form-type-5">Fotografía</option>
+            <option data-i18n="form-type-6">Otro</option>
+          </select>
+        </div>
+        <div class="form-group">
+          <label for="cf-message" data-i18n="form-msg-label">Sobre tu proyecto</label>
+          <textarea id="cf-message" name="message" placeholder="Cuéntame sobre tu visión…" data-i18n-placeholder="form-msg-placeholder"></textarea>
+        </div>
+        <div class="form-submit">
+          <span class="form-note" data-i18n="form-note">Respondo en menos de 48 hrs</span>
+          <a class="btn-primary" id="submitBtn" onclick="sendEmail(event)">Enviar mensaje &nbsp;→</a>
+        </div>
+      </form>
+    </div>
+  </div>
+</section>
+
+<!-- CATALOG OVERLAY -->
+<div class="catalog-overlay" id="catalogOverlay" role="dialog" aria-modal="true">
+  <div class="catalog-topbar">
+    <span class="catalog-logo">TOCALI <span>FILM</span></span>
+    <button class="catalog-close-btn" id="catalogCloseBtn" data-i18n="catalog-close">Cerrar ✕</button>
+  </div>
+  <div class="catalog-body">
+    <div class="section-eyebrow" data-i18n="work-eyebrow">Portafolio</div>
+    <h2 class="catalog-headline" data-i18n="catalog-title">Todos los Proyectos</h2>
+    <div class="catalog-filters">
+      <button class="filter-pill active" data-filter="all" data-i18n="filter-all">Todos</button>
+      <button class="filter-pill" data-filter="comercial" data-i18n="cat-1">Comercial</button>
+      <button class="filter-pill" data-filter="institucional" data-i18n="cat-6">Institucional</button>
+      <button class="filter-pill" data-filter="marca" data-i18n="cat-2">Video de Marca</button>
+      <button class="filter-pill" data-filter="videoclip" data-i18n="cat-3">Videoclip</button>
+      <button class="filter-pill" data-filter="narrativo" data-i18n="cat-4">Cine Narrativo</button>
+      <button class="filter-pill" data-filter="fotografia" data-i18n="cat-5">Fotografía</button>
+    </div>
+    <p class="catalog-count" id="catalogCount">— proyectos</p>
+    <div class="catalog-grid" id="catalogGrid">
+
+      <!-- VIDEOCLIP: 涙（肉 I）— Director -->
+      <div class="catalog-card work-card" data-cat="videoclip">
+        <div class="card-thumb">
+          <div class="card-bg bg-3" style="background-image:url('THUMBNAILS/thumb-namida.png');background-size:cover;background-position:center;"></div><div class="card-scan"></div><div class="card-vignette"></div>
+          <iframe src="https://www.youtube.com/embed/arxz7E0TPvY?enablejsapi=1"
+            frameborder="0" allow="autoplay; fullscreen; picture-in-picture" allowfullscreen
+            style="position:absolute;inset:0;width:100%;height:100%;z-index:3;opacity:0;pointer-events:none;transition:opacity 0.4s;"
+            id="cc-1" data-provider="youtube"></iframe>
+          <div class="play-btn" aria-label="Play" onclick="playVimeo('cc-1','cov-1')"><svg viewBox="0 0 20 20"><polygon points="5,3 17,10 5,17"/></svg></div>
+          <div class="card-overlay" id="cov-1">
+            <div class="card-cat">Videoclip · Dirección</div>
+            <div class="card-title" data-i18n="p-namida">Lágrimas (Carne I)</div>
+            <div class="card-year">2023 — toulavi × Kosugi</div>
+          </div>
+        </div>
+      </div>
+
+      <!-- VIDEOCLIP: 人生葬送派 — Director -->
+      <div class="catalog-card work-card" data-cat="videoclip">
+        <div class="card-thumb">
+          <div class="card-bg bg-1" style="background-image:url('THUMBNAILS/thumb-jinsei.png');background-size:cover;background-position:center;"></div><div class="card-scan"></div><div class="card-vignette"></div>
+          <iframe src="https://www.youtube.com/embed/XUaR_U-lywA?enablejsapi=1"
+            frameborder="0" allow="autoplay; fullscreen; picture-in-picture" allowfullscreen
+            style="position:absolute;inset:0;width:100%;height:100%;z-index:3;opacity:0;pointer-events:none;transition:opacity 0.4s;"
+            id="cc-2" data-provider="youtube"></iframe>
+          <div class="play-btn" aria-label="Play" onclick="playVimeo('cc-2','cov-2')"><svg viewBox="0 0 20 20"><polygon points="5,3 17,10 5,17"/></svg></div>
+          <div class="card-overlay" id="cov-2">
+            <div class="card-cat">Videoclip · Dirección</div>
+            <div class="card-title" data-i18n="p-jinsei">La Secta del Funeral de la Vida</div>
+            <div class="card-year">2023 — 人生葬送派</div>
+          </div>
+        </div>
+      </div>
+
+      <!-- VIDEOCLIP: RAPTURE — Director — Laget's Jam Stack -->
+      <div class="catalog-card work-card" data-cat="videoclip">
+        <div class="card-thumb">
+          <div class="card-bg bg-7" style="background-image:url('THUMBNAILS/thumb-rapture.png');background-size:cover;background-position:center;"></div><div class="card-scan"></div><div class="card-vignette"></div>
+          <iframe src="https://www.youtube.com/embed/uZT2flL-HCE?enablejsapi=1"
+            frameborder="0" allow="autoplay; fullscreen; picture-in-picture" allowfullscreen
+            style="position:absolute;inset:0;width:100%;height:100%;z-index:3;opacity:0;pointer-events:none;transition:opacity 0.4s;"
+            id="cc-3" data-provider="youtube"></iframe>
+          <div class="play-btn" aria-label="Play" onclick="playVimeo('cc-3','cov-3')"><svg viewBox="0 0 20 20"><polygon points="5,3 17,10 5,17"/></svg></div>
+          <div class="card-overlay" id="cov-3">
+            <div class="card-cat">Videoclip · Dirección</div>
+            <div class="card-title" data-i18n="p-rapture">RAPTURE</div>
+            <div class="card-year">2022 — Laget's Jam Stack</div>
+          </div>
+        </div>
+      </div>
+
+      <!-- VIDEOCLIP: 彼岸花 — Director — ボウリングパーティ -->
+      <div class="catalog-card work-card" data-cat="videoclip">
+        <div class="card-thumb">
+          <div class="card-bg bg-6" style="background-image:url('THUMBNAILS/thumb-higanbana.png');background-size:cover;background-position:center;"></div><div class="card-scan"></div><div class="card-vignette"></div>
+          <iframe src="https://www.youtube.com/embed/h1fLSa2pi8Y?enablejsapi=1"
+            frameborder="0" allow="autoplay; fullscreen; picture-in-picture" allowfullscreen
+            style="position:absolute;inset:0;width:100%;height:100%;z-index:3;opacity:0;pointer-events:none;transition:opacity 0.4s;"
+            id="cc-4" data-provider="youtube"></iframe>
+          <div class="play-btn" aria-label="Play" onclick="playVimeo('cc-4','cov-4')"><svg viewBox="0 0 20 20"><polygon points="5,3 17,10 5,17"/></svg></div>
+          <div class="card-overlay" id="cov-4">
+            <div class="card-cat">Videoclip · Dirección</div>
+            <div class="card-title" data-i18n="p-higanbana">Flor del Más Allá</div>
+            <div class="card-year">2023 — ボウリングパーティ</div>
+          </div>
+        </div>
+      </div>
+
+      <!-- VIDEOCLIP: 海景 — Cinematografía — 十三月の夢泥棒 -->
+      <div class="catalog-card work-card" data-cat="videoclip">
+        <div class="card-thumb">
+          <div class="card-bg bg-2" style="background-image:url('THUMBNAILS/thumb-anteelmar.png');background-size:cover;background-position:center;"></div><div class="card-scan"></div><div class="card-vignette"></div>
+          <iframe src="https://www.youtube.com/embed/HhWxHPvuaZ0?enablejsapi=1"
+            frameborder="0" allow="autoplay; fullscreen; picture-in-picture" allowfullscreen
+            style="position:absolute;inset:0;width:100%;height:100%;z-index:3;opacity:0;pointer-events:none;transition:opacity 0.4s;"
+            id="cc-5" data-provider="youtube"></iframe>
+          <div class="play-btn" aria-label="Play" onclick="playVimeo('cc-5','cov-5')"><svg viewBox="0 0 20 20"><polygon points="5,3 17,10 5,17"/></svg></div>
+          <div class="card-overlay" id="cov-5">
+            <div class="card-cat">Videoclip · Cinematografía</div>
+            <div class="card-title" data-i18n="p-kaikei">Ante el Mar</div>
+            <div class="card-year">2024 — 十三月の夢泥棒</div>
+          </div>
+        </div>
+      </div>
+
+      <!-- VIDEOCLIP: BIRTHMARK — Cinematografía — Laget's Jam Stack -->
+      <div class="catalog-card work-card" data-cat="videoclip">
+        <div class="card-thumb">
+          <div class="card-bg bg-7" style="background-image:url('THUMBNAILS/thumb-birthmark.png');background-size:cover;background-position:center;"></div><div class="card-scan"></div><div class="card-vignette"></div>
+          <iframe src="https://www.youtube.com/embed/e3iIeZST70k?enablejsapi=1"
+            frameborder="0" allow="autoplay; fullscreen; picture-in-picture" allowfullscreen
+            style="position:absolute;inset:0;width:100%;height:100%;z-index:3;opacity:0;pointer-events:none;transition:opacity 0.4s;"
+            id="cc-6" data-provider="youtube"></iframe>
+          <div class="play-btn" aria-label="Play" onclick="playVimeo('cc-6','cov-6')"><svg viewBox="0 0 20 20"><polygon points="5,3 17,10 5,17"/></svg></div>
+          <div class="card-overlay" id="cov-6">
+            <div class="card-cat">Videoclip · Cinematografía</div>
+            <div class="card-title" data-i18n="p-birthmark">BIRTHMARK</div>
+            <div class="card-year">2023 — Laget's Jam Stack</div>
+          </div>
+        </div>
+      </div>
+
+      <!-- VIDEOCLIP: 君はアイドル — Cinematografía/Edición -->
+      <div class="catalog-card work-card" data-cat="videoclip">
+        <div class="card-thumb">
+          <div class="card-bg bg-3" style="background-image:url('THUMBNAILS/thumb-youareanidol.png');background-size:cover;background-position:center;"></div><div class="card-scan"></div><div class="card-vignette"></div>
+          <iframe src="https://www.youtube.com/embed/iRQd1o7H0_k?enablejsapi=1"
+            frameborder="0" allow="autoplay; fullscreen; picture-in-picture" allowfullscreen
+            style="position:absolute;inset:0;width:100%;height:100%;z-index:3;opacity:0;pointer-events:none;transition:opacity 0.4s;"
+            id="cc-7" data-provider="youtube"></iframe>
+          <div class="play-btn" aria-label="Play" onclick="playVimeo('cc-7','cov-7')"><svg viewBox="0 0 20 20"><polygon points="5,3 17,10 5,17"/></svg></div>
+          <div class="card-overlay" id="cov-7">
+            <div class="card-cat">Videoclip · Cinematografía &amp; Edición</div>
+            <div class="card-title" data-i18n="p-idol">Eres un Ídolo</div>
+            <div class="card-year">2023 — ボウリングパーティ</div>
+          </div>
+        </div>
+      </div>
+
+      <!-- INSTITUCIONAL: 着物・イン・アヴィニョン -->
+      <div class="catalog-card work-card" data-cat="institucional">
+        <div class="card-thumb">
+          <div class="card-bg bg-5"></div><div class="card-scan"></div><div class="card-vignette"></div>
+          <iframe src="https://player.vimeo.com/video/TU_ID_AQUI?badge=0&autopause=0&player_id=cc8"
+            frameborder="0" allow="autoplay; fullscreen; picture-in-picture" allowfullscreen
+            style="position:absolute;inset:0;width:100%;height:100%;z-index:3;opacity:0;pointer-events:none;transition:opacity 0.4s;"
+            id="cc-8" data-provider="vimeo"></iframe>
+          <div class="play-btn" aria-label="Play" onclick="playVimeo('cc-8','cov-8')"><svg viewBox="0 0 20 20"><polygon points="5,3 17,10 5,17"/></svg></div>
+          <div class="card-overlay" id="cov-8">
+            <div class="card-cat">Institucional · Cinematografía &amp; Edición</div>
+            <div class="card-title" data-i18n="p-kimono">Kimono en Avignón</div>
+            <div class="card-year">2024 — Avignon, France</div>
+          </div>
+        </div>
+      </div>
+
+      <!-- INSTITUCIONAL: 離見の見 — Paris ENSBA × Avignon × MAU -->
+      <div class="catalog-card work-card" data-cat="institucional">
+        <div class="card-thumb">
+          <div class="card-bg bg-6"></div><div class="card-scan"></div><div class="card-vignette"></div>
+          <iframe src="https://player.vimeo.com/video/TU_ID_AQUI?badge=0&autopause=0&player_id=cc9"
+            frameborder="0" allow="autoplay; fullscreen; picture-in-picture" allowfullscreen
+            style="position:absolute;inset:0;width:100%;height:100%;z-index:3;opacity:0;pointer-events:none;transition:opacity 0.4s;"
+            id="cc-9" data-provider="vimeo"></iframe>
+          <div class="play-btn" aria-label="Play" onclick="playVimeo('cc-9','cov-9')"><svg viewBox="0 0 20 20"><polygon points="5,3 17,10 5,17"/></svg></div>
+          <div class="card-overlay" id="cov-9">
+            <div class="card-cat">Institucional · Paris ENSBA × Avignon × MAU</div>
+            <div class="card-title" data-i18n="p-riken">La Mirada Distante</div>
+            <div class="card-year">2024 — Paris &amp; Avignon, France</div>
+          </div>
+        </div>
+      </div>
+
+      <!-- NARRATIVO: 無常：母 — Documental experimental -->
+      <div class="catalog-card work-card" data-cat="narrativo">
+        <div class="card-thumb">
+          <div class="card-bg bg-4" style="background-image:url('THUMBNAILS/thumb-impermanence.png');background-size:cover;background-position:center;"></div><div class="card-scan"></div><div class="card-vignette"></div>
+          <iframe src="https://www.youtube.com/embed/wCM7l5m8WwM?enablejsapi=1"
+            frameborder="0" allow="autoplay; fullscreen; picture-in-picture" allowfullscreen
+            style="position:absolute;inset:0;width:100%;height:100%;z-index:3;opacity:0;pointer-events:none;transition:opacity 0.4s;"
+            id="cc-10" data-provider="youtube"></iframe>
+          <div class="play-btn" aria-label="Play" onclick="playVimeo('cc-10','cov-10')"><svg viewBox="0 0 20 20"><polygon points="5,3 17,10 5,17"/></svg></div>
+          <div class="card-overlay" id="cov-10">
+            <div class="card-cat">Documental Experimental · Dirección</div>
+            <div class="card-title" data-i18n="p-mujo">Impermanencia: Madre</div>
+            <div class="card-year">2022 — Nagi Shokudo, Shibuya · "tuning"</div>
+          </div>
+        </div>
+      </div>
+
+      <!-- NARRATIVO: オン・ヨア・マーク — Cinematografía — Tomoka Nagao -->
+      <div class="catalog-card work-card" data-cat="narrativo">
+        <div class="card-thumb">
+          <div class="card-bg bg-2"></div><div class="card-scan"></div><div class="card-vignette"></div>
+          <iframe src="https://player.vimeo.com/video/TU_ID_AQUI?badge=0&autopause=0&player_id=cc11"
+            frameborder="0" allow="autoplay; fullscreen; picture-in-picture" allowfullscreen
+            style="position:absolute;inset:0;width:100%;height:100%;z-index:3;opacity:0;pointer-events:none;transition:opacity 0.4s;"
+            id="cc-11" data-provider="vimeo"></iframe>
+          <div class="play-btn" aria-label="Play" onclick="playVimeo('cc-11','cov-11')"><svg viewBox="0 0 20 20"><polygon points="5,3 17,10 5,17"/></svg></div>
+          <div class="card-overlay" id="cov-11">
+            <div class="card-cat">Documental · Cinematografía</div>
+            <div class="card-title" data-i18n="p-mark">On Your Mark</div>
+            <div class="card-year">2024 — Dir. Tomoka Nagao</div>
+          </div>
+        </div>
+      </div>
+
+      <!-- FOTOGRAFIA: ギャル・イン・アヴィニョン -->
+      <div class="catalog-card work-card" data-cat="fotografia">
+        <div class="card-thumb">
+          <div class="card-bg bg-5"></div><div class="card-scan"></div><div class="card-vignette"></div>
+          <iframe src="https://player.vimeo.com/video/TU_ID_AQUI?badge=0&autopause=0&player_id=cc12"
+            frameborder="0" allow="autoplay; fullscreen; picture-in-picture" allowfullscreen
+            style="position:absolute;inset:0;width:100%;height:100%;z-index:3;opacity:0;pointer-events:none;transition:opacity 0.4s;"
+            id="cc-12" data-provider="vimeo"></iframe>
+          <div class="play-btn" aria-label="Play" onclick="playVimeo('cc-12','cov-12')"><svg viewBox="0 0 20 20"><polygon points="5,3 17,10 5,17"/></svg></div>
+          <div class="card-overlay" id="cov-12">
+            <div class="card-cat">Fotografía · Cinematografía &amp; Edición</div>
+            <div class="card-title" data-i18n="p-gal">Gal en Avignón</div>
+            <div class="card-year">2024 — Avignon, France</div>
+          </div>
+        </div>
+      </div>
+
+      <!-- NARRATIVO: ノイズの住民 — Largometraje MFA -->
+      <div class="catalog-card work-card" data-cat="narrativo">
+        <div class="card-thumb">
+          <div class="card-bg bg-1" style="background-image:url('THUMBNAILS/thumb-noise.png');background-size:cover;background-position:center;"></div><div class="card-scan"></div><div class="card-vignette"></div>
+          <iframe src="https://www.youtube.com/embed/YxIfHuqC53I?enablejsapi=1"
+            frameborder="0" allow="autoplay; fullscreen; picture-in-picture" allowfullscreen
+            style="position:absolute;inset:0;width:100%;height:100%;z-index:3;opacity:0;pointer-events:none;transition:opacity 0.4s;"
+            id="cc-13" data-provider="youtube"></iframe>
+          <div class="play-btn" aria-label="Play" onclick="playVimeo('cc-13','cov-13')"><svg viewBox="0 0 20 20"><polygon points="5,3 17,10 5,17"/></svg></div>
+          <div class="card-overlay" id="cov-13">
+            <div class="card-cat">Cine Narrativo · Largometraje</div>
+            <div class="card-title" data-i18n="p-noise">Los Habitantes del Ruido</div>
+            <div class="card-year">2024 — Musashino Art University · MFA</div>
+          </div>
+        </div>
+      </div>
+
+      <!-- NARRATIVO: 存在の虚無感 — Cortometraje -->
+      <div class="catalog-card work-card" data-cat="narrativo">
+        <div class="card-thumb">
+          <div class="card-bg bg-2" style="background-image:url('THUMBNAILS/thumb-void.png');background-size:cover;background-position:center;"></div><div class="card-scan"></div><div class="card-vignette"></div>
+          <iframe src="https://www.youtube.com/embed/vHMKJ6O0WSc?enablejsapi=1"
+            frameborder="0" allow="autoplay; fullscreen; picture-in-picture" allowfullscreen
+            style="position:absolute;inset:0;width:100%;height:100%;z-index:3;opacity:0;pointer-events:none;transition:opacity 0.4s;"
+            id="cc-14" data-provider="youtube"></iframe>
+          <div class="play-btn" aria-label="Play" onclick="playVimeo('cc-14','cov-14')"><svg viewBox="0 0 20 20"><polygon points="5,3 17,10 5,17"/></svg></div>
+          <div class="card-overlay" id="cov-14">
+            <div class="card-cat">Cine Narrativo · Cortometraje</div>
+            <div class="card-title" data-i18n="p-void">El Vacío de la Existencia</div>
+            <div class="card-year">2022 — Nominado Yamanashi Media Arts Award · TOKABI</div>
+          </div>
+        </div>
+      </div>
+
+      <!-- NARRATIVO: 渋谷にて — Cortometraje -->
+      <div class="catalog-card work-card" data-cat="narrativo">
+        <div class="card-thumb">
+          <div class="card-bg bg-3" style="background-image:url('THUMBNAILS/thumb-atshibuya.png');background-size:cover;background-position:center;"></div><div class="card-scan"></div><div class="card-vignette"></div>
+          <iframe src="https://www.youtube.com/embed/GQ_2qXasZB8?enablejsapi=1"
+            frameborder="0" allow="autoplay; fullscreen; picture-in-picture" allowfullscreen
+            style="position:absolute;inset:0;width:100%;height:100%;z-index:3;opacity:0;pointer-events:none;transition:opacity 0.4s;"
+            id="cc-15" data-provider="youtube"></iframe>
+          <div class="play-btn" aria-label="Play" onclick="playVimeo('cc-15','cov-15')"><svg viewBox="0 0 20 20"><polygon points="5,3 17,10 5,17"/></svg></div>
+          <div class="card-overlay" id="cov-15">
+            <div class="card-cat">Cine Narrativo · Cortometraje</div>
+            <div class="card-title" data-i18n="p-shibuya">En Shibuya</div>
+            <div class="card-year">2022 — Premio ISCA · Mejor Video Nacional</div>
+          </div>
+        </div>
+      </div>
+
+      <!-- VIDEOCLIP: NOSTALGIA — Tomoka Nagao -->
+      <div class="catalog-card work-card" data-cat="videoclip">
+        <div class="card-thumb">
+          <div class="card-bg bg-5" style="background-image:url('THUMBNAILS/thumb-nostalgia.png');background-size:cover;background-position:center;"></div><div class="card-scan"></div><div class="card-vignette"></div>
+          <iframe src="https://www.youtube.com/embed/qJIqk42ko9I?enablejsapi=1"
+            frameborder="0" allow="autoplay; fullscreen; picture-in-picture" allowfullscreen
+            style="position:absolute;inset:0;width:100%;height:100%;z-index:3;opacity:0;pointer-events:none;transition:opacity 0.4s;"
+            id="cc-16" data-provider="youtube"></iframe>
+          <div class="play-btn" aria-label="Play" onclick="playVimeo('cc-16','cov-16')"><svg viewBox="0 0 20 20"><polygon points="5,3 17,10 5,17"/></svg></div>
+          <div class="card-overlay" id="cov-16">
+            <div class="card-cat">Videoclip · Dirección</div>
+            <div class="card-title" data-i18n="p-nostalgia">NOSTALGIA</div>
+            <div class="card-year">2023 — Tomoka Nagao · Premio Micro Cinema Contest</div>
+          </div>
+        </div>
+      </div>
+
+      <!-- COMERCIAL: やっぱり映画なら、POP&COKE！ -->
+      <div class="catalog-card work-card" data-cat="comercial">
+        <div class="card-thumb">
+          <div class="card-bg bg-7" style="background-image:url('THUMBNAILS/thumb-pop&amp;coke.png');background-size:cover;background-position:center;"></div><div class="card-scan"></div><div class="card-vignette"></div>
+          <iframe src="https://www.youtube.com/embed/2Z1lR84XUJA?enablejsapi=1"
+            frameborder="0" allow="autoplay; fullscreen; picture-in-picture" allowfullscreen
+            style="position:absolute;inset:0;width:100%;height:100%;z-index:3;opacity:0;pointer-events:none;transition:opacity 0.4s;"
+            id="cc-17" data-provider="youtube"></iframe>
+          <div class="play-btn" aria-label="Play" onclick="playVimeo('cc-17','cov-17')"><svg viewBox="0 0 20 20"><polygon points="5,3 17,10 5,17"/></svg></div>
+          <div class="card-overlay" id="cov-17">
+            <div class="card-cat">Comercial · PV</div>
+            <div class="card-title" data-i18n="p-popcoke">¡POP&amp;COKE!</div>
+            <div class="card-year">2023 — TOHO Cinemas Student Film Festival · Selección Oficial</div>
+          </div>
+        </div>
+      </div>
+
+
+      <!-- FOTOGRAFÍA: 纛Z子 — SAKA-SAMA -->
+      <div class="catalog-card work-card" data-cat="fotografia" onclick="openGallery('saka')" style="cursor:pointer;">
+        <div class="card-thumb">
+          <div class="card-bg bg-2" style="background-image:url('THUMBNAILS/thumb-modelo2.png');background-size:cover;background-position:center 30%;"></div><div class="card-scan"></div><div class="card-vignette"></div>
+          <div class="card-overlay">
+            <div class="card-cat">Fotografía Editorial</div>
+            <div class="card-title">纛Z子 — SAKA-SAMA</div>
+            <div class="card-year">2023 · TRASH-UP!! RECORDS · Tokio</div>
+          </div>
+        </div>
+      </div>
+
+      <!-- FOTOGRAFÍA: QUNO — Serie Espejo -->
+      <div class="catalog-card work-card" data-cat="fotografia" onclick="openGallery('quno')" style="cursor:pointer;">
+        <div class="card-thumb">
+          <div class="card-bg bg-4" style="background-image:url('THUMBNAILS/thumb-espejo1.png');background-size:cover;background-position:center;"></div><div class="card-scan"></div><div class="card-vignette"></div>
+          <div class="card-overlay">
+            <div class="card-cat">Fotografía · Colectivo Escénico</div>
+            <div class="card-title">Quno — キューノ</div>
+            <div class="card-year">2023 · TOKABI · Tokio</div>
+          </div>
+        </div>
+      </div>
+
+    </div><!-- /catalog-grid -->
+  </div><!-- /catalog-body -->
+</div><!-- /catalog-overlay -->
+
+<!-- PHOTO LIGHTBOX -->
+<div class="photo-lightbox" id="photoLightbox" role="dialog" aria-modal="true">
+  <button class="lightbox-close" onclick="closeLightbox()" aria-label="Cerrar">ESC &nbsp;✕</button>
+  <button class="lightbox-nav lightbox-prev" onclick="lightboxNav(-1)" aria-label="Anterior">
+    <svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.5"><polyline points="10,2 4,8 10,14"/></svg>
+  </button>
+  <div class="lightbox-img-wrap">
+    <img id="lightboxImg" src="" alt="">
+    <div class="lightbox-scan"></div>
+  </div>
+  <button class="lightbox-nav lightbox-next" onclick="lightboxNav(1)" aria-label="Siguiente">
+    <svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.5"><polyline points="6,2 12,8 6,14"/></svg>
+  </button>
+  <div class="lightbox-counter" id="lightboxCounter">1 / 3</div>
+</div>
+<!-- /PHOTO LIGHTBOX -->
+
+<!-- PHOTO GALLERY: SAKA-SAMA -->
+<div class="gallery-overlay" id="galleryOverlay" role="dialog" aria-modal="true">
+  <div class="gallery-topbar">
+    <div class="gallery-title-block">
+      <div class="gallery-label">Fotografía Editorial</div>
+      <div class="gallery-title">纛Z子 — SAKA-SAMA</div>
+    </div>
+    <button class="gallery-close-btn" onclick="closeGallery()">Cerrar ✕</button>
+  </div>
+  <div class="gallery-body">
+    <div class="gallery-subtitle">TRASH-UP!! RECORDS · Tokio, 2023 · Dirección creativa, set & iluminación: Andrés Madrueño</div>
+    <div class="gallery-grid">
+      <div class="gallery-item" onclick="openGalleryFS(0)">
+        <img src="THUMBNAILS/thumb-modelo1.png" alt="纛Z子 01">
+        <div class="gallery-item-overlay"><span class="gallery-item-num">01</span></div>
+      </div>
+      <div class="gallery-item" onclick="openGalleryFS(1)">
+        <img src="THUMBNAILS/thumb-modelo2.png" alt="纛Z子 02">
+        <div class="gallery-item-overlay"><span class="gallery-item-num">02</span></div>
+      </div>
+      <div class="gallery-item" onclick="openGalleryFS(2)">
+        <img src="THUMBNAILS/thumb-modelo3.png" alt="纛Z子 03">
+        <div class="gallery-item-overlay"><span class="gallery-item-num">03</span></div>
+      </div>
+      <div class="gallery-item" onclick="openGalleryFS(3)">
+        <img src="THUMBNAILS/thumb-modelo4.png" alt="纛Z子 04">
+        <div class="gallery-item-overlay"><span class="gallery-item-num">04</span></div>
+      </div>
+      <div class="gallery-item" onclick="openGalleryFS(4)">
+        <img src="THUMBNAILS/thumb-modelo5.png" alt="纛Z子 05">
+        <div class="gallery-item-overlay"><span class="gallery-item-num">05</span></div>
+      </div>
+      <div class="gallery-item" onclick="openGalleryFS(5)">
+        <img src="THUMBNAILS/thumb-modelo6.png" alt="纛Z子 06">
+        <div class="gallery-item-overlay"><span class="gallery-item-num">06</span></div>
+      </div>
+      <div class="gallery-item" onclick="openGalleryFS(6)">
+        <img src="THUMBNAILS/thumb-espejo1.png" alt="纛Z子 07">
+        <div class="gallery-item-overlay"><span class="gallery-item-num">07</span></div>
+      </div>
+      <div class="gallery-item" onclick="openGalleryFS(7)">
+        <img src="THUMBNAILS/thumb-espejo2.png" alt="纛Z子 08">
+        <div class="gallery-item-overlay"><span class="gallery-item-num">08</span></div>
+      </div>
+      <div class="gallery-item" onclick="openGalleryFS(8)">
+        <img src="THUMBNAILS/thumb-espejo3.png" alt="纛Z子 09">
+        <div class="gallery-item-overlay"><span class="gallery-item-num">09</span></div>
+      </div>
+      <div class="gallery-item" onclick="openGalleryFS(9)">
+        <img src="THUMBNAILS/thumb-espejo4.png" alt="纛Z子 10">
+        <div class="gallery-item-overlay"><span class="gallery-item-num">10</span></div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- GALLERY FULLSCREEN VIEWER -->
+<div class="gallery-fullscreen" id="galleryFS">
+  <button class="gallery-fs-close" onclick="closeGalleryFS()">ESC ✕</button>
+  <button class="gallery-fs-nav gallery-fs-prev" onclick="galleryFSNav(-1)">
+    <svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.5"><polyline points="10,2 4,8 10,14"/></svg>
+  </button>
+  <img id="galleryFSImg" src="" alt="">
+  <button class="gallery-fs-nav gallery-fs-next" onclick="galleryFSNav(1)">
+    <svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.5"><polyline points="6,2 12,8 6,14"/></svg>
+  </button>
+  <div class="gallery-fs-counter" id="galleryFSCounter">1 / 10</div>
+</div>
+<!-- /PHOTO GALLERY -->
+
+
+<!-- FOOTER -->
+<footer>
+  <div class="footer-logo">TOCALI <span>FILM</span></div>
+  <ul class="footer-links">
+    <li><a href="#work">Work</a></li>
+    <li><a href="#about">About</a></li>
+    <li><a href="#services">Services</a></li>
+    <li><a href="#contact">Contact</a></li>
+  </ul>
+  <div class="footer-copy">© 2025 Andrés Madrueño Ortiz — Baja California, Mexico</div>
+</footer>
+
+<script>
+  /* CURSOR */
+  const cursor = document.getElementById('cursor');
+  const ring = document.getElementById('cursorRing');
+  let mx = 0, my = 0, rx = 0, ry = 0;
+  document.addEventListener('mousemove', e => { mx = e.clientX; my = e.clientY; });
+  function animCursor() {
+    cursor.style.left = mx + 'px';
+    cursor.style.top = my + 'px';
+    rx += (mx - rx) * 0.12;
+    ry += (my - ry) * 0.12;
+    ring.style.left = rx + 'px';
+    ring.style.top = ry + 'px';
+    requestAnimationFrame(animCursor);
+  }
+  animCursor();
+
+  /* NAV SCROLL */
+  const navbar = document.getElementById('navbar');
+  window.addEventListener('scroll', () => {
+    navbar.classList.toggle('scrolled', window.scrollY > 60);
+  });
+
+  /* HAMBURGER */
+  const ham = document.getElementById('hamburger');
+  const navLinks = document.getElementById('navLinks');
+  ham.addEventListener('click', () => navLinks.classList.toggle('open'));
+  navLinks.querySelectorAll('a').forEach(a => a.addEventListener('click', () => navLinks.classList.remove('open')));
+
+  /* SCROLL REVEAL */
+  const observer = new IntersectionObserver(entries => {
+    entries.forEach(e => { if (e.isIntersecting) { e.target.classList.add('visible'); observer.unobserve(e.target); } });
+  }, { threshold: 0.12 });
+  document.querySelectorAll('.reveal').forEach(el => observer.observe(el));
+
+  /* VIDEO PLAYER (YouTube + Vimeo) */
+  function playVimeo(iframeId, overlayId) {
+    const iframe = document.getElementById(iframeId);
+    const overlay = document.getElementById(overlayId);
+    const card = iframe.closest('.work-card');
+    // Ocultar overlay y botón de play
+    overlay.style.opacity = '0';
+    overlay.style.pointerEvents = 'none';
+    card.querySelector('.play-btn').style.opacity = '0';
+    // Mostrar el iframe
+    iframe.style.opacity = '1';
+    iframe.style.pointerEvents = 'auto';
+    // Arrancar reproducción
+    const provider = iframe.dataset.provider;
+    if (provider === 'youtube') {
+      // Añadir autoplay=1 a la URL — método más fiable para YouTube
+      if (!iframe.src.includes('autoplay=1')) {
+        iframe.src = iframe.src + '&autoplay=1';
+      }
+    } else {
+      // Vimeo: usar postMessage API
+      iframe.contentWindow.postMessage('{"method":"play"}', '*');
+    }
+  }
+
+  /* ── LANGUAGE TOGGLE ── */
+  const LANGS = ['es', 'en', 'ja'];
+  const LANG_LABELS = { es: '🇲🇽 ES', en: '🇺🇸 EN', ja: '🇯🇵 JA' };
+  let langIdx = 0;
+
+  const T = {
+    es: {
+      'nav-work':'Trabajo','nav-about':'Acerca','nav-services':'Servicios','nav-contact':'Contacto',
+      'hero-h1':'Visual<br>Story<span class="italic-line">telling</span>',
+      'hero-sub':'Comercial · Marca · Videoclip · Narrativa<br>Andrés Madrueño Ortiz — Director Freelance',
+      'hero-btn-primary':'Ver trabajo  →','hero-btn-ghost':'Iniciar proyecto',
+      'hero-meta-basedin':'Ubicado en','hero-meta-formedin':'Formado en','hero-meta-available':'Disponible',
+      'cat-1':'Comercial','cat-2':'Video de Marca','cat-3':'Videoclip','cat-4':'Cine Narrativo','cat-5':'Fotografía','cat-6':'Institucional',
+      'work-eyebrow':'Portafolio','work-title':'Trabajos Seleccionados','work-more':'Todos los proyectos →',
+      'catalog-title':'Todos los Proyectos','catalog-close':'Cerrar ✕','filter-all':'Todos',
+      'about-eyebrow':'Director & Cinematógrafo','about-name-sub':'Precisión de Tokio · Alma de Baja',
+      'bio-p1':'Director y cinematógrafo freelance trabajando en la intersección de dos mundos visuales. Formado en la meticulosa tradición artesanal de la <em>Universidad de Arte Musashino en Tokio</em>, y arraigado en la energía cruda y solar de <em>Baja California</em>.',
+      'bio-p2':'Especializado en trabajo comercial, de marca y videoclips — con una sensibilidad narrativa que le da a cada fotograma una razón de existir. Miembro del colectivo independiente de cine <em>TOKABI</em> en Japón.',
+      'stat-years':'Años activos','stat-formation':'Formación','stat-borders':'Sin fronteras',
+      'awards-eyebrow':'Reconocimientos',
+      'award-isca-prize':'Grand Prize',
+      'award-isca-name':'ISCA International Students Creative Award 2022',
+      'award-isca-project':'En Shibuya',
+      'award-isca-link':'Ver galería oficial →',
+      'edu-title':'Formación',
+      'edu-1-degree':'Maestría — Artes e Imágenes<br><span style="font-weight:300;font-style:italic;font-size:0.9em;">(Cine y Arte en Medios)</span>',
+      'edu-2-degree':'Estudiante de Investigación','edu-3-degree':'Lengua y Cultura Japonesa','edu-4-degree':'Lic. en Comunicación Audiovisual',
+      'edu-location-tokyo':'Tokio, Japón','edu-location-baja':'Baja California, México',
+      'portrait-1-caption':'Retrato','portrait-2-caption':'En set',
+      'services-eyebrow':'Lo que hago','services-title':'Servicios',
+      'svc-1-name':'Comercial','svc-1-desc':'Spots publicitarios y contenido de marca que convierte — lanzamientos de productos, campañas, films promocionales.',
+      'svc-2-name':'Video de Marca','svc-2-desc':'Documentales de marca que cuentan la historia detrás de tu empresa, producto o cultura.',
+      'svc-3-name':'Videoclip','svc-3-desc':'Videoclips cinematográficos con identidad visual sólida — desde el concepto hasta el corte final.',
+      'svc-4-name':'Cine Narrativo','svc-5-name':'Fotografía Editorial','svc-4-desc':'Cortometrajes y proyectos narrativos — desde piezas de festival hasta encargos creativos.',
+      'contact-eyebrow':'Creamos juntos','contact-h':'Inicia un<br><em>proyecto</em>',
+      'contact-p':'Basado en Baja California y disponible para proyectos en México, EE.UU., Japón y más allá.',
+      'form-name-label':'Nombre','form-name-placeholder':'Tu nombre','form-email-label':'Correo',
+      'form-type-label':'Tipo de proyecto','form-type-default':'Selecciona un servicio',
+      'form-type-1':'Comercial','form-type-2':'Video de Marca','form-type-3':'Videoclip','form-type-4':'Cine Narrativo','form-type-5':'Fotografía','form-type-6':'Otro',
+      'form-msg-label':'Sobre tu proyecto','form-msg-placeholder':'Cuéntame sobre tu visión…',
+      'form-note':'Respondo en menos de 48 hrs','form-submit':'Enviar mensaje  →',
+      'p-noise':'Los Habitantes del Ruido','p-void':'El Vacío de la Existencia','p-shibuya':'En Shibuya',
+      'p-nostalgia':'NOSTALGIA','p-popcoke':'¡POP&COKE!',
+      'p-namida':'Lágrimas (Carne I)','p-jinsei':'La Secta del Funeral de la Vida','p-rapture':'RAPTURE',
+      'p-higanbana':'Flor del Más Allá','p-kaikei':'Ante el Mar','p-birthmark':'BIRTHMARK',
+      'p-idol':'Eres un Ídolo','p-kimono':'Kimono en Avignón','p-riken':'La Mirada Distante',
+      'p-mujo':'Impermanencia: Madre','p-mark':'On Your Mark','p-gal':'Gal en Avignón',
+    },
+    en: {
+      'nav-work':'Work','nav-about':'About','nav-services':'Services','nav-contact':'Contact',
+      'hero-h1':'Visual<br>Story<span class="italic-line">telling</span>',
+      'hero-sub':'Commercial · Brand · Music Video · Narrative<br>Andrés Madrueño Ortiz — Freelance Director',
+      'hero-btn-primary':'See work  →','hero-btn-ghost':'Start a project',
+      'hero-meta-basedin':'Based in','hero-meta-formedin':'Formed in','hero-meta-available':'Available',
+      'cat-1':'Commercial','cat-2':'Brand Video','cat-3':'Music Video','cat-4':'Narrative Film','cat-5':'Photography','cat-6':'Institutional',
+      'work-eyebrow':'Portfolio','work-title':'Selected Work','work-more':'All projects →',
+      'catalog-title':'All Projects','catalog-close':'Close ✕','filter-all':'All',
+      'about-eyebrow':'Director & Cinematographer','about-name-sub':'Precision of Tokyo · Soul of Baja',
+      'bio-p1':'Freelance director and cinematographer working at the crossroads of two visual worlds. Formed in the meticulous craft tradition of <em>Musashino Art University in Tokyo</em>, and rooted in the raw, sun-bleached energy of <em>Baja California</em>.',
+      'bio-p2':'Specializing in commercial, brand, and music video work — with a narrative sensibility that gives every frame a reason to exist. Member of independent filmmaking collective <em>TOKABI</em> in Japan.',
+      'stat-years':'Years active','stat-formation':'Formation','stat-borders':'Without borders',
+      'awards-eyebrow':'Awards',
+      'award-isca-prize':'Grand Prize',
+      'award-isca-name':'ISCA International Students Creative Award 2022',
+      'award-isca-project':'In Shibuya',
+      'award-isca-link':'View official gallery →',
+      'edu-title':'Formation',
+      'edu-1-degree':'MFA — Imaging Arts & Sciences<br><span style="font-weight:300;font-style:italic;font-size:0.9em;">(Film and Media Art)</span>',
+      'edu-2-degree':'Research Student','edu-3-degree':'Japanese Language & Culture','edu-4-degree':'B.A. in Audiovisual Media',
+      'edu-location-tokyo':'Tokyo, Japan','edu-location-baja':'Baja California, Mexico',
+      'portrait-1-caption':'Portrait','portrait-2-caption':'On set',
+      'services-eyebrow':'What I do','services-title':'Services',
+      'svc-1-name':'Commercial','svc-1-desc':'Advertising spots and branded content that converts — product launches, campaigns, promotional films.',
+      'svc-2-name':'Brand Video','svc-2-desc':'Documentary-style brand films that tell the story behind your company, product, or culture.',
+      'svc-3-name':'Music Video','svc-3-desc':'Cinematic music videos with a strong visual identity — concept development to final cut.',
+      'svc-4-name':'Narrative Film','svc-4-desc':'Short films and narrative projects — from festival pieces to creative commissions.',
+      'contact-eyebrow':'Let\'s create together','contact-h':'Start a<br><em>project</em>',
+      'contact-p':'Based in Baja California and available for commissions across Mexico, the US, Japan, and beyond.',
+      'form-name-label':'Name','form-name-placeholder':'Your name','form-email-label':'Email',
+      'form-type-label':'Project type','form-type-default':'Select a service',
+      'form-type-1':'Commercial','form-type-2':'Brand Video','form-type-3':'Music Video','form-type-4':'Narrative Film','form-type-5':'Photography','form-type-6':'Other',
+      'form-msg-label':'About your project','form-msg-placeholder':'Tell me about your vision…',
+      'form-note':'I\'ll respond within 48 hrs','form-submit':'Send message  →',
+      'p-noise':'Inhabitants of Noise','p-void':'Sense of Existential Void','p-shibuya':'In Shibuya',
+      'p-nostalgia':'NOSTALGIA','p-popcoke':'POP&COKE!',
+      'p-namida':'Tears (Flesh I)','p-jinsei':'Life Funeral Sect','p-rapture':'RAPTURE',
+      'p-higanbana':'Red Spider Lily','p-kaikei':'Before the Sea','p-birthmark':'BIRTHMARK',
+      'p-idol':'You Are an Idol','p-kimono':'Kimono in Avignon','p-riken':'The Detached View',
+      'p-mujo':'Impermanence: Mother','p-mark':'On Your Mark','p-gal':'Gal in Avignon' ,
+    },
+    ja: {
+      'nav-work':'作品','nav-about':'私について','nav-services':'サービス','nav-contact':'お問い合わせ',
+      'hero-h1':'光で<br><span class="italic-line">語る</span>',
+      'hero-sub':'コマーシャル · ブランド · MV · 映画<br>Andrés Madrueño Ortiz — フリーランス監督',
+      'hero-btn-primary':'作品を見る  →','hero-btn-ghost':'プロジェクトを始める',
+      'hero-meta-basedin':'拠点','hero-meta-formedin':'出身','hero-meta-available':'対応可能',
+      'cat-1':'コマーシャル','cat-2':'ブランド動画','cat-3':'MV','cat-4':'劇映画','cat-5':'写真','cat-6':'インスティトゥシオナル',
+      'work-eyebrow':'ポートフォリオ','work-title':'厳選作品','work-more':'全ての作品 →',
+      'catalog-title':'全プロジェクト','catalog-close':'閉じる ✕','filter-all':'すべて',
+      'about-eyebrow':'監督・撮影監督','about-name-sub':'東京の精密さ · バハの魂',
+      'bio-p1':'二つの視覚的世界の交差点で活動するフリーランス監督・撮影監督。<em>東京・武蔵野美術大学</em>の緻密な制作伝統に培われ、<em>バハカリフォルニア</em>の荒々しい陽光の中に根ざす。',
+      'bio-p2':'コマーシャル・ブランド・ミュージックビデオを専門とし、すべてのフレームに存在理由を与える物語性を持つ。日本の独立系映画制作集団<em>TOKABI</em>のメンバー。',
+      'stat-years':'活動年数','stat-formation':'出身','stat-borders':'ボーダーレス',
+      'awards-eyebrow':'受賞歴',
+      'award-isca-prize':'グランプリ',
+      'award-isca-name':'ISCA 国際学生クリエイティブアワード 2022',
+      'award-isca-project':'渋谷にて',
+      'award-isca-link':'公式ギャラリーを見る →',
+      'edu-title':'学歴',
+      'edu-1-degree':'修士号 — 映像芸術<br><span style="font-weight:300;font-style:italic;font-size:0.9em;">（映画・メディアアート）</span>',
+      'edu-2-degree':'研究生','edu-3-degree':'日本語・日本文化','edu-4-degree':'映像メディア学士',
+      'edu-location-tokyo':'東京、日本','edu-location-baja':'バハカリフォルニア、メキシコ',
+      'portrait-1-caption':'ポートレート','portrait-2-caption':'撮影現場',
+      'services-eyebrow':'提供サービス','services-title':'サービス',
+      'svc-1-name':'コマーシャル','svc-1-desc':'商品を動かす広告スポットとブランドコンテンツ — 製品発表、キャンペーン、プロモーション映像。',
+      'svc-2-name':'ブランド動画','svc-2-desc':'企業・商品・文化の物語を伝えるドキュメンタリースタイルのブランド映像。',
+      'svc-3-name':'ミュージックビデオ','svc-3-desc':'強い視覚的アイデンティティを持つシネマティックなMV — コンセプトからファイナルカットまで。',
+      'svc-4-name':'劇映画','svc-4-desc':'短編映画から映画祭出品作品、創作委託まで — あらゆる物語映画制作。',
+      'contact-eyebrow':'一緒に創ろう','contact-h':'プロジェクトを<br><em>始めよう</em>',
+      'contact-p':'バハカリフォルニアを拠点に、メキシコ・米国・日本など世界各地でのプロジェクトに対応。',
+      'form-name-label':'お名前','form-name-placeholder':'お名前','form-email-label':'メール',
+      'form-type-label':'プロジェクトの種類','form-type-default':'サービスを選択',
+      'form-type-1':'コマーシャル','form-type-2':'ブランド動画','form-type-3':'MV','form-type-4':'劇映画','form-type-5':'写真','form-type-6':'その他',
+      'form-msg-label':'プロジェクトについて','form-msg-placeholder':'あなたのビジョンを教えてください…',
+      'form-note':'48時間以内にご返信します','form-submit':'送信する  →',
+      'p-noise':'ノイズの住民','p-void':'存在の虚無感','p-shibuya':'渋谷にて',
+      'p-nostalgia':'NOSTALGIA','p-popcoke':'やっぱり映画なら、POP&COKE！',
+      'p-namida':'涙（肉 I）','p-jinsei':'人生葬送派','p-rapture':'RAPTURE',
+      'p-higanbana':'彼岸花','p-kaikei':'海の前','p-birthmark':'BIRTHMARK',
+      'p-idol':'君はアイドル','p-kimono':'着物・イン・アヴィニョン','p-riken':'離見の見',
+      'p-mujo':'無常：母','p-mark':'オン・ヨア・マーク','p-gal':'ギャル・イン・アヴィニョン' ,
+    }
+  };
+
+  function setLang(lang) {
+    const d = T[lang];
+    document.querySelectorAll('[data-i18n]').forEach(el => {
+      const k = el.dataset.i18n;
+      if (d[k] !== undefined) el.textContent = d[k];
+    });
+    document.querySelectorAll('[data-i18n-html]').forEach(el => {
+      const k = el.dataset.i18nHtml;
+      if (d[k] !== undefined) el.innerHTML = d[k];
+    });
+    document.querySelectorAll('[data-i18n-placeholder]').forEach(el => {
+      const k = el.dataset.i18nPlaceholder;
+      if (d[k] !== undefined) el.placeholder = d[k];
+    });
+    document.documentElement.lang = lang;
+    localStorage.setItem('tocali-lang', lang);
+  }
+
+  const langToggle = document.getElementById('langToggle');
+  langToggle.addEventListener('click', () => {
+    langIdx = (langIdx + 1) % LANGS.length;
+    const lang = LANGS[langIdx];
+    langToggle.textContent = LANG_LABELS[lang];
+    setLang(lang);
+  });
+
+  // Restore saved preference, default to Spanish
+  const saved = localStorage.getItem('tocali-lang');
+  if (saved && LANGS.includes(saved)) {
+    langIdx = LANGS.indexOf(saved);
+    langToggle.textContent = LANG_LABELS[saved];
+    setLang(saved);
+  } else {
+    setLang('es'); // always apply dictionary — never rely on raw HTML defaults
+  }
+
+  /* ── CATALOG ── */
+  const catalogOverlay = document.getElementById('catalogOverlay');
+  const catalogCloseBtn = document.getElementById('catalogCloseBtn');
+  const catalogCountEl = document.getElementById('catalogCount');
+  const catalogCards = document.querySelectorAll('.catalog-card');
+  const filterPills = document.querySelectorAll('.filter-pill');
+  let currentFilter = 'all';
+
+  function updateCount() {
+    const visible = [...catalogCards].filter(c => c.style.display !== 'none').length;
+    catalogCountEl.textContent = `— ${visible} proyecto${visible !== 1 ? 's' : ''}`;
+  }
+
+  function setFilter(cat) {
+    currentFilter = cat;
+    filterPills.forEach(p => p.classList.toggle('active', p.dataset.filter === cat));
+    catalogCards.forEach(card => {
+      card.style.display = (cat === 'all' || card.dataset.cat === cat) ? '' : 'none';
+    });
+    updateCount();
+  }
+
+  filterPills.forEach(pill => {
+    pill.addEventListener('click', () => setFilter(pill.dataset.filter));
+  });
+
+  function openCatalog(cat) {
+    cat = cat || 'all';
+    setFilter(cat);
+    catalogOverlay.classList.add('open');
+    document.body.style.overflow = 'hidden';
+    catalogOverlay.scrollTop = 0;
+  }
+
+  function closeCatalog() {
+    catalogOverlay.classList.remove('open');
+    document.body.style.overflow = '';
+  }
+
+  catalogCloseBtn.addEventListener('click', closeCatalog);
+  document.addEventListener('keydown', e => {
+    if (e.key === 'Escape' && catalogOverlay.classList.contains('open')) closeCatalog();
+  });
+
+  // Init count
+  updateCount();
+
+  /* PHOTO LIGHTBOX */
+  const lightboxImages = [
+    'THUMBNAILS/thumb-ISCA1.jpg',
+    'THUMBNAILS/thumb-ISCA2.jpg',
+    'THUMBNAILS/thumb-ISCA3.jpeg',
+    'THUMBNAILS/thumb-PFF1.jpg',
+    'THUMBNAILS/thumb-PFF2.jpg',
+    'THUMBNAILS/thumb-PFF3.jpg'
+  ];
+  let lightboxIndex = 0;
+  const photoLightbox = document.getElementById('photoLightbox');
+  const lightboxImg   = document.getElementById('lightboxImg');
+  const lightboxCounter = document.getElementById('lightboxCounter');
+
+  function openLightbox(idx) {
+    lightboxIndex = idx;
+    lightboxImg.src = lightboxImages[lightboxIndex];
+    lightboxCounter.textContent = (lightboxIndex + 1) + ' / ' + lightboxImages.length;
+    photoLightbox.classList.add('open');
+    document.body.style.overflow = 'hidden';
+  }
+  function closeLightbox() {
+    photoLightbox.classList.remove('open');
+    document.body.style.overflow = '';
+  }
+  function lightboxNav(dir) {
+    lightboxIndex = (lightboxIndex + dir + lightboxImages.length) % lightboxImages.length;
+    lightboxImg.src = lightboxImages[lightboxIndex];
+    lightboxCounter.textContent = (lightboxIndex + 1) + ' / ' + lightboxImages.length;
+  }
+  // Close on backdrop click
+  photoLightbox.addEventListener('click', e => {
+    if (e.target === photoLightbox) closeLightbox();
+  });
+  // Keyboard navigation
+  document.addEventListener('keydown', e => {
+    if (!photoLightbox.classList.contains('open')) return;
+    if (e.key === 'Escape') closeLightbox();
+    if (e.key === 'ArrowLeft')  lightboxNav(-1);
+    if (e.key === 'ArrowRight') lightboxNav(1);
+  });
+
+
+
+  /* PHOTO GALLERY */
+  const galleries = {
+    'saka': [
+      'THUMBNAILS/thumb-modelo1.png',
+      'THUMBNAILS/thumb-modelo2.png',
+      'THUMBNAILS/thumb-modelo3.png',
+      'THUMBNAILS/thumb-modelo4.png',
+      'THUMBNAILS/thumb-modelo5.png',
+      'THUMBNAILS/thumb-modelo6.png',
+    ],
+    'quno': [
+      'THUMBNAILS/thumb-espejo1.png',
+      'THUMBNAILS/thumb-espejo2.png',
+      'THUMBNAILS/thumb-espejo3.png',
+      'THUMBNAILS/thumb-espejo4.png',
+    ]
+  };
+  let galleryImages = galleries['saka'];
+  let galleryFSIndex = 0;
+  const galleryOverlay  = document.getElementById('galleryOverlay');
+  const galleryFSEl     = document.getElementById('galleryFS');
+  const galleryFSImg    = document.getElementById('galleryFSImg');
+  const galleryFSCounter = document.getElementById('galleryFSCounter');
+
+  function openGallery(key) {
+    key = key || 'saka';
+    galleryImages = galleries[key];
+    // Update title/subtitle
+    const titles = {
+      'saka': { label: 'Fotografía Editorial', title: '纛Z子 — SAKA-SAMA', sub: 'TRASH-UP!! RECORDS · Tokio, 2023' },
+      'quno': { label: 'Fotografía · Colectivo Escénico', title: 'Quno — キューノ', sub: 'Artwork & Fotografía: TOKABI · Tokio, 2023' }
+    };
+    const t = titles[key];
+    document.querySelector('.gallery-label').textContent = t.label;
+    document.querySelector('.gallery-title').textContent = t.title;
+    document.querySelector('.gallery-subtitle').textContent = t.sub + ' · Dirección creativa, set & iluminación: Andrés Madrueño';
+    // Show/hide grid items
+    const items = document.querySelectorAll('.gallery-item');
+    items.forEach((item, i) => {
+      item.style.display = i < galleryImages.length ? '' : 'none';
+      if (i < galleryImages.length) {
+        item.querySelector('img').src = galleryImages[i];
+        item.querySelector('.gallery-item-num').textContent = String(i+1).padStart(2,'0');
+        item.onclick = () => openGalleryFS(i);
+      }
+    });
+    galleryOverlay.classList.add('open');
+    document.body.style.overflow = 'hidden';
+    galleryOverlay.scrollTop = 0;
+  }
+  function closeGallery() {
+    galleryOverlay.classList.remove('open');
+    document.body.style.overflow = '';
+    closeGalleryFS();
+  }
+  function openGalleryFS(idx) {
+    galleryFSIndex = idx;
+    galleryFSImg.src = galleryImages[galleryFSIndex];
+    galleryFSCounter.textContent = (galleryFSIndex + 1) + ' / ' + galleryImages.length;
+    galleryFSEl.classList.add('open');
+  }
+  function closeGalleryFS() {
+    galleryFSEl.classList.remove('open');
+  }
+  function galleryFSNav(dir) {
+    galleryFSIndex = (galleryFSIndex + dir + galleryImages.length) % galleryImages.length;
+    galleryFSImg.src = galleryImages[galleryFSIndex];
+    galleryFSCounter.textContent = (galleryFSIndex + 1) + ' / ' + galleryImages.length;
+  }
+  document.addEventListener('keydown', e => {
+    if (galleryFSEl.classList.contains('open')) {
+      if (e.key === 'Escape') closeGalleryFS();
+      if (e.key === 'ArrowLeft')  galleryFSNav(-1);
+      if (e.key === 'ArrowRight') galleryFSNav(1);
+    } else if (galleryOverlay.classList.contains('open') && e.key === 'Escape') {
+      closeGallery();
+    }
+  });
+  galleryFSEl.addEventListener('click', e => {
+    if (e.target === galleryFSEl) closeGalleryFS();
+  });
+
+  /* SERVICES ACCORDION */
+  function toggleService(card) {
+    const isOpen = card.classList.contains('open');
+    document.querySelectorAll('.service-card').forEach(c => c.classList.remove('open'));
+    if (!isOpen) card.classList.add('open');
+  }
+
+  /* AWARDS FILMSTRIP — drag to scroll */
+  (function() {
+    const strip = document.getElementById('awardsFilmstrip');
+    if (!strip) return;
+    let isDown = false, startX, scrollLeft;
+    strip.addEventListener('mousedown', e => {
+      isDown = true;
+      startX = e.pageX - strip.offsetLeft;
+      scrollLeft = strip.scrollLeft;
+    });
+    strip.addEventListener('mouseleave', () => { isDown = false; });
+    strip.addEventListener('mouseup', () => { isDown = false; });
+    strip.addEventListener('mousemove', e => {
+      if (!isDown) return;
+      e.preventDefault();
+      const x = e.pageX - strip.offsetLeft;
+      strip.scrollLeft = scrollLeft - (x - startX);
+    });
+  })();
+
+  /* FORM — mailto */
+  function sendEmail(e) {
+    e.preventDefault();
+    const name    = document.getElementById('cf-name').value;
+    const email   = document.getElementById('cf-email').value;
+    const type    = document.getElementById('cf-type').value;
+    const message = document.getElementById('cf-message').value;
+
+    const subject = encodeURIComponent('Proyecto TOCALI FILM — ' + (type || 'Consulta'));
+    const body    = encodeURIComponent(
+      'Nombre: ' + name + '\n' +
+      'Email: ' + email + '\n' +
+      'Tipo de proyecto: ' + type + '\n\n' +
+      message
+    );
+
+    window.location.href = 'mailto:tocali.film@gmail.com?subject=' + subject + '&body=' + body;
+  }
+</script>
+</body>
+</html>
