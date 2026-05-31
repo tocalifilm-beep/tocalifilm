@@ -1409,19 +1409,30 @@
   @media (max-width: 900px) {
     nav { padding: 1.2rem 1.5rem; }
     .nav-links { display: none; }
-    .hamburger { display: block; }
+    .hamburger { display: flex; flex-direction: column; gap: 5px; z-index: 1000; position: relative; }
+    .lang-toggle { z-index: 9999; position: fixed; right: 4rem; top: 1rem; }
+    .hamburger span { transition: transform 0.3s, opacity 0.3s; }
+    .hamburger.open span:nth-child(1) { transform: translateY(9px) rotate(45deg); }
+    .hamburger.open span:nth-child(2) { opacity: 0; }
+    .hamburger.open span:nth-child(3) { transform: translateY(-9px) rotate(-45deg); }
     .nav-links.open {
       display: flex;
       flex-direction: column;
       position: fixed;
-      inset: 0;
-      background: rgba(247,245,241,0.97);
-      z-index: 400;
+      top: 0; left: 0;
+      width: 100vw;
+      height: 100vh;
+      background: #f7f5f1;
+      z-index: 9000;
       justify-content: center;
       align-items: center;
       gap: 2.5rem;
+      list-style: none;
+      margin: 0; padding: 0;
     }
-    .nav-links.open a { font-size: 0.85rem; }
+    .nav-links.open li { list-style: none; }
+    .nav-links.open a { font-size: 1.2rem; letter-spacing: 0.25em; color: #111 !important; text-decoration: none; display: block; }
+    .nav-links.open .nav-contact { background: #111 !important; color: #fff !important; border-color: #111 !important; padding: 0.8rem 2rem; }
 
     #hero { padding: 0 1.5rem 3rem; }
     .hero-filmstrip { display: none; }
@@ -1439,8 +1450,9 @@
 
     /* About */
     .about-grid { display: block; }
-    .about-left { margin-bottom: 3rem; }
-    .about-right { display: block; }
+    .about-left { margin-bottom: 2rem; }
+    .portrait-mobile-only { display: block; max-width: 220px; margin-left: auto; margin-right: auto; margin-bottom: 1.5rem; }
+    .portrait-desktop-only { display: none; }
 
     /* Services — 1 columna en móvil */
     .services-grid { grid-template-columns: 1fr; }
@@ -1591,9 +1603,10 @@
   .hero-eyebrow { color: #999 !important; }
   .hero-h1 { color: #111 !important; text-shadow: none !important; font-size: clamp(3rem, 4.5vw, 5.5rem) !important; }
   .hero-sub { color: #666 !important; font-size: 0.9rem; }
-  #hero .btn-primary { background: #111 !important; color: #fff !important; border-color: #111 !important; white-space: nowrap; padding: 0.9rem 1.8rem; font-size: 0.58rem; }
+  #hero .btn-primary { background: #111 !important; color: #fff !important; border-color: #111 !important; white-space: nowrap; padding: 0.9rem 1.8rem; font-size: 0.58rem; -webkit-appearance: none; }
+  #hero .btn-ghost { border-color: #bbb !important; color: #111 !important; white-space: nowrap; padding: 0.9rem 1.8rem; font-size: 0.58rem; -webkit-appearance: none; }
   #hero .btn-primary:hover { background: #fff !important; color: #111 !important; }
-  #hero .btn-ghost { border-color: #bbb !important; color: #111 !important; white-space: nowrap; padding: 0.9rem 1.8rem; font-size: 0.58rem; }
+
   #hero .btn-ghost:hover { background: #111 !important; color: #fff !important; border-color: #111 !important; }
   .hero-actions { display: flex; flex-wrap: wrap; gap: 0.8rem; margin-top: 2rem; }
 
@@ -1702,7 +1715,7 @@
   .portrait-frame { border-color: #e8e8e8; }
   .corner { border-color: #ccc !important; }
   .portrait-caption { color: #777; }
-  .portrait-single { border-color: #e8e8e8; max-width: 100%; }
+  .portrait-single { border-color: #e8e8e8; margin-bottom: 2rem; }
 
   .portrait-caption em { color: #555; }
 
@@ -2112,10 +2125,12 @@
     border: 0.5px solid rgba(255,255,255,0.25);
     color: rgba(255,255,255,0.6);
     width: 44px; height: 44px;
-    display: flex; align-items: center; justify-content: center;
+    display: none !important;
+    align-items: center; justify-content: center;
     cursor: pointer;
     transition: border-color 0.2s, color 0.2s;
   }
+  .gallery-fullscreen.open .gallery-fs-nav { display: flex !important; }
   .gallery-fs-nav:hover { border-color: #fff; color: #fff; }
   .gallery-fs-prev { left: 1.5rem; }
   .gallery-fs-next { right: 1.5rem; }
@@ -2143,6 +2158,10 @@
     margin-bottom: 2.5rem;
     max-width: 340px;
   }
+
+  /* Portrait visibility by breakpoint */
+  .portrait-mobile-only { display: none; }
+  .portrait-desktop-only { display: block; }
 </style>
 </head>
 <body>
@@ -2400,6 +2419,11 @@
   <div class="section-inner">
     <div class="about-grid">
       <div class="about-left">
+        <div class="portrait-single portrait-mobile-only reveal">
+            <div class="corner tl"></div><div class="corner tr"></div><div class="corner bl"></div><div class="corner br"></div>
+            <div class="portrait-inner"><div class="portrait-scan"></div><div class="portrait-text" aria-hidden="true">ANDRÉS<br>MADRUEÑO<br>ORTIZ<br>——<br>DIRECTOR<br>——<br>BAJA · TOKYO</div><img src="ANDRES-BW2.png" alt="Andrés Madrueño Ortiz"></div>
+            <p class="portrait-caption"><span data-i18n="portrait-1-caption">Retrato</span></p>
+        </div>
         <div class="about-eyebrow reveal" data-i18n="about-eyebrow">Director & Cinematógrafo</div>
         <div class="about-name-group reveal">
           <h2 class="about-name">
@@ -2578,17 +2602,9 @@
       </div>
 
       <div class="about-right">
-        <div class="portrait-single reveal">
-            <div class="corner tl"></div>
-            <div class="corner tr"></div>
-            <div class="corner bl"></div>
-            <div class="corner br"></div>
-            <div class="portrait-inner">
-              <div class="portrait-scan"></div>
-              <div class="portrait-text" aria-hidden="true">
-                ANDRÉS<br>MADRUEÑO<br>ORTIZ<br>——<br>DIRECTOR<br>——<br>BAJA · TOKYO
-              </div><img src="ANDRES-BW2.png" alt="Andrés Madrueño Ortiz">
-            </div>
+        <div class="portrait-single portrait-desktop-only reveal">
+            <div class="corner tl"></div><div class="corner tr"></div><div class="corner bl"></div><div class="corner br"></div>
+            <div class="portrait-inner"><div class="portrait-scan"></div><div class="portrait-text" aria-hidden="true">ANDRÉS<br>MADRUEÑO<br>ORTIZ<br>——<br>DIRECTOR<br>——<br>BAJA · TOKYO</div><img src="ANDRES-BW2.png" alt="Andrés Madrueño Ortiz"></div>
             <p class="portrait-caption"><span data-i18n="portrait-1-caption">Retrato</span></p>
         </div>
 
@@ -3429,8 +3445,18 @@
   /* HAMBURGER */
   const ham = document.getElementById('hamburger');
   const navLinks = document.getElementById('navLinks');
-  ham.addEventListener('click', () => navLinks.classList.toggle('open'));
-  navLinks.querySelectorAll('a').forEach(a => a.addEventListener('click', () => navLinks.classList.remove('open')));
+  ham.addEventListener('click', () => {
+    navLinks.classList.toggle('open');
+    ham.classList.toggle('open');
+  });
+  // Close when tapping overlay background
+  navLinks.addEventListener('click', e => {
+    if (e.target === navLinks || e.target.tagName === 'UL') {
+      navLinks.classList.remove('open');
+      ham.classList.remove('open');
+    }
+  });
+  navLinks.querySelectorAll('a').forEach(a => a.addEventListener('click', () => { navLinks.classList.remove('open'); ham.classList.remove('open'); }));
 
   /* SCROLL REVEAL */
   const observer = new IntersectionObserver(entries => {
