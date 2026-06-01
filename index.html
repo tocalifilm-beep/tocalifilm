@@ -180,6 +180,19 @@
     object-fit: cover;
     opacity: 1;
   }
+  /* YouTube iframe como fondo — técnica cover */
+  .hero-bg iframe {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    width: 177.78vh;   /* 100vh × 16/9 */
+    height: 100vh;
+    min-width: 100%;
+    transform: translate(-50%, -50%);
+    pointer-events: none;
+    border: 0;
+    opacity: 1;
+  }
   /* Film grain overlay */
   .hero-grain {
     position: absolute; inset: 0;
@@ -1584,6 +1597,7 @@
   }
   .hero-bg::after { display: none; }
   .hero-bg video { opacity: 1 !important; }
+  .hero-bg iframe { opacity: 1 !important; }
 
   /* Text in left 1/3 */
   .hero-content {
@@ -1620,6 +1634,13 @@
       aspect-ratio: 16/9;
       height: auto;
       flex-shrink: 0;
+    }
+    .hero-bg iframe {
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      transform: none;
     }
     .hero-content {
       width: 100%;
@@ -2189,10 +2210,13 @@
 <!-- HERO -->
 <section id="hero">
   <div class="hero-bg">
-    <!-- 🎬 EDIT: replace your-reel.mp4 with your actual video filename -->
-    <video autoplay muted loop playsinline>
-      <source src="hero-reel.mp4" type="video/mp4">
-    </video>
+    <iframe
+      src="https://www.youtube.com/embed/OcGdqlZG770?autoplay=1&mute=1&loop=1&playlist=OcGdqlZG770&controls=0&disablekb=1&fs=0&rel=0&modestbranding=1&playsinline=1"
+      frameborder="0"
+      allow="autoplay; fullscreen"
+      allowfullscreen
+      title="Tocali Film Reel"
+    ></iframe>
   </div>
   <div class="hero-grain"></div>
   <div class="hero-light"></div>
